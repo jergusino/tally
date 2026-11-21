@@ -10,11 +10,18 @@ const swipesEl = document.getElementById("swipes");
 const minutesEl = document.getElementById("minutes");
 const countEl = document.getElementById("count");
 
-// Same colour steps as the app: white, then amber at 30, then red at 80.
+// Promo colour climb, as in the reference reel: black, yellow at 50, orange at 86, red at 100.
+function colorFor(n) {
+  if (n >= 100) return "#ff3a37";
+  if (n >= 86) return "#f26b1d";
+  if (n >= 50) return "#ffc600";
+  return "#0a0a0a";
+}
+
 function render(n) {
   swipesEl.textContent = n;
   minutesEl.textContent = Math.round((n * TARGET_MINUTES) / TARGET_SWIPES);
-  countEl.style.color = n >= 80 ? "var(--red)" : n >= 30 ? "var(--amber)" : "var(--white)";
+  countEl.style.color = colorFor(n);
 }
 
 // One load-time count-up. Reduced motion gets the final value straight away.
