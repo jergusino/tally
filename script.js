@@ -7,12 +7,22 @@ const COUNT_MS = 1600;
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 const swipesEl = document.getElementById("swipes");
+const countEl = document.getElementById("count");
 const phoneCountEl = document.getElementById("phone-count");
 const phoneMinutesEl = document.getElementById("phone-minutes");
 
-function render(n) {
+// The count climbs through the reel's colours and ends on red: black, yellow, orange, red.
+function climbColor(p) {
+  if (p >= 1) return "#ff3a37";
+  if (p >= 0.66) return "#f26b1d";
+  if (p >= 0.33) return "#ffc600";
+  return "#0a0a0a";
+}
+
+function render(n, color = "#ff3a37") {
   const minutes = Math.round((n * TARGET_MINUTES) / TARGET_SWIPES);
   swipesEl.textContent = n;
+  countEl.style.color = color;
   // The phone overlay mirrors the stage number, as in the reference reel.
   phoneCountEl.textContent = n;
   phoneMinutesEl.textContent = `${minutes} min`;
@@ -25,7 +35,7 @@ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   const start = performance.now();
   const frame = (now) => {
     const p = Math.min((now - start) / COUNT_MS, 1);
-    render(Math.round(TARGET_SWIPES * (1 - Math.pow(1 - p, 3))));
+    render(Math.round(TARGET_SWIPES * (1 - Math.pow(1 - p, 3))), climbColor(p));
     if (p < 1) requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);
