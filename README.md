@@ -9,7 +9,8 @@ Live at https://jergusino.github.io/tally/ once GitHub Pages is on (step 3).
 - `index.html`, `styles.css`, `script.js`: the page.
 - `apps-script/Code.gs`: the endpoint that writes signups to the sheet. It runs in Google Apps Script, not on GitHub.
 - `favicon.svg`: tab icon.
-- `images/feed.jpg`: the photo on the phone mockup in the hero. From Unsplash (free licence, cropped to phone-screen size).
+- `images/reels-screen.jpg`: the screen shown on the phone mockup in the hero (a Reels screenshot with the Tally overlay drawn on top).
+- `images/phone-back.png`: the back of the phone mockup, cropped from the supplied hardware photo with rounded corners.
 
 ## Setup
 

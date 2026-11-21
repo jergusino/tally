@@ -8,6 +8,7 @@
   --rule: #d4d4d4;
   --dot: #d9d9d9;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --titanium: linear-gradient(135deg, #e9e4d9 0%, #b6b0a3 30%, #8d877a 55%, #cfc8b9 80%, #a39d8f 100%);
 }
 
 * { box-sizing: border-box; }
@@ -109,7 +110,7 @@ main {
   position: relative;
   z-index: 1;
   margin-top: -10vw;
-  perspective: 1400px;
+  perspective: 1600px;
   animation: phone-in 1.2s var(--ease) 0.15s both;
 }
 
@@ -118,22 +119,80 @@ main {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------- Phone (sized in em: base 16px = 300px wide) ---------- */
+/* ---------- Phone: titanium frame, black bezel, real screen, real back ---------- */
 
+/* Sized in em: base 16px = 300px wide. */
 .phone {
   --pw: 230px;
   position: relative;
   width: var(--pw);
   aspect-ratio: 9 / 19.5;
   font-size: calc(var(--pw) / 300 * 16);
-  padding: 0.7em;
-  border-radius: 3em;
-  background: linear-gradient(145deg, #2e2e2e, #0b0b0b 60%);
-  box-shadow:
-    inset 0 0 0 0.12em #3d3d3d,
-    0 3.2em 4em -1.5em rgba(10, 10, 10, 0.35);
-  transform: rotateX(8deg) rotateZ(-3deg);
+  --half: 0.98em; /* half the body thickness: about 1.96em total, close to the real phone's depth */
+  transform: rotateX(6deg) rotateZ(-3deg);
   transform-style: preserve-3d;
+}
+
+/* The turn: front, then the back photo, then front again. */
+.phone-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  animation: phone-turn 11s ease-in-out 1.6s infinite;
+}
+
+@keyframes phone-turn {
+  0%, 100% { transform: rotateY(-14deg); }
+  35%, 50% { transform: rotateY(180deg); }
+  85%      { transform: rotateY(-14deg); }
+}
+
+.face,
+.back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Front and back sit on either side of the body, so the phone has real depth. */
+.face { transform: translateZ(var(--half)); }
+.back { transform: rotateY(180deg) translateZ(var(--half)); }
+
+/* Thin slices stacked between front and back make the titanium side walls. */
+.slice {
+  position: absolute;
+  inset: 0;
+  border-radius: 3.3em;
+  background: var(--titanium);
+  transform: translateZ(calc((var(--i) - 6) * 0.16em));
+}
+
+.back img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Titanium rim: the outside edge of the phone. */
+.frame {
+  position: absolute;
+  inset: 0;
+  padding: 0.24em;
+  border-radius: 3.3em;
+  background: var(--titanium);
+  box-shadow:
+    inset 0 0 0 0.05em rgba(255, 255, 255, 0.35),
+    0 3.2em 4em -1.5em rgba(10, 10, 10, 0.35);
+}
+
+/* Black glass bezel around the screen. */
+.bezel {
+  width: 100%;
+  height: 100%;
+  padding: 0.42em;
+  border-radius: 3.05em;
+  background: #050505;
 }
 
 .screen {
@@ -141,14 +200,22 @@ main {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 2.4em;
+  border-radius: 2.6em;
   background: #000;
   color: #fff;
 }
 
-.notch {
+.screen-img {
   position: absolute;
-  top: 0.7em;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.island {
+  position: absolute;
+  top: 0.75em;
   left: 50%;
   z-index: 4;
   width: 30%;
@@ -158,82 +225,18 @@ main {
   background: #000;
 }
 
-.feed-photo {
+/* Side buttons, sitting just outside the titanium rim. */
+.btn {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 0.22em;
+  border-radius: 0.1em;
+  background: linear-gradient(90deg, #8d877a, #d9d2c3);
 }
 
-.feed-top {
-  position: absolute;
-  top: 2.8em;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  display: flex;
-  justify-content: center;
-  gap: 0.9em;
-  font-size: 0.8em;
-  font-weight: 600;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-  opacity: 0.85;
-}
-
-.feed-top .on { opacity: 1; }
-
-.feed-rail {
-  position: absolute;
-  right: 0.7em;
-  bottom: 6.5em;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 0.9em;
-}
-
-.feed-rail i {
-  width: 1.7em;
-  height: 1.7em;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.85);
-}
-
-.feed-caption {
-  position: absolute;
-  left: 0.9em;
-  right: 3.6em;
-  bottom: 5.2em;
-  z-index: 2;
-  font-size: 0.8em;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
-}
-
-.feed-caption strong { display: block; font-weight: 700; }
-
-.feed-nav {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  height: 4.4em;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0 2em;
-  background: rgba(10, 10, 10, 0.9);
-}
-
-.feed-nav i {
-  width: 1.3em;
-  height: 1.3em;
-  border-radius: 0.4em;
-  border: 0.13em solid rgba(255, 255, 255, 0.6);
-}
-
-.feed-nav i.active { border-color: #fff; }
+.btn-action   { left: -0.2em;  top: 14%; height: 3.2%; }
+.btn-vol-up   { left: -0.2em;  top: 22%; height: 6.2%; }
+.btn-vol-down { left: -0.2em;  top: 30%; height: 6.2%; }
+.btn-power    { right: -0.2em; top: 27%; height: 9.5%; }
 
 /* The Tally overlay: red number, red ring, small timer. */
 .tally {
@@ -515,7 +518,7 @@ footer p { margin: 0; }
   .pill-field button { padding: 0.75rem 1.1rem; }
 }
 
-/* Reduced motion: nothing animates or transitions, and the climb shows at once */
+/* Reduced motion: nothing animates or transitions; the phone stays on its front, the climb shows at once */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
   .climb span { opacity: 1; transform: none; }
