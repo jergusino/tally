@@ -11,20 +11,22 @@ const countEl = document.getElementById("count");
 const phoneCountEl = document.getElementById("phone-count");
 const phoneMinutesEl = document.getElementById("phone-minutes");
 
-// The count climbs through the reel's colours and ends on red: black, yellow, orange, red.
-function climbColor(p) {
-  if (p >= 1) return "#ff3a37";
-  if (p >= 0.66) return "#f26b1d";
-  if (p >= 0.33) return "#ffc600";
+// The number follows the reel's colours by its value: black, yellow from 50, orange from 65, red from 80.
+function colorFor(n) {
+  if (n >= 80) return "#ff3a37";
+  if (n >= 65) return "#f26b1d";
+  if (n >= 50) return "#ffc600";
   return "#0a0a0a";
 }
 
-function render(n, color = "#ff3a37") {
+// Both numbers (the stage and the phone overlay) always show the same value and colour.
+function render(n) {
   const minutes = Math.round((n * TARGET_MINUTES) / TARGET_SWIPES);
+  const color = colorFor(n);
   swipesEl.textContent = n;
   countEl.style.color = color;
-  // The phone overlay mirrors the stage number, as in the reference reel.
   phoneCountEl.textContent = n;
+  phoneCountEl.style.color = color;
   phoneMinutesEl.textContent = `${minutes} min`;
 }
 
@@ -35,7 +37,7 @@ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   const start = performance.now();
   const frame = (now) => {
     const p = Math.min((now - start) / COUNT_MS, 1);
-    render(Math.round(TARGET_SWIPES * (1 - Math.pow(1 - p, 3))), climbColor(p));
+    render(Math.round(TARGET_SWIPES * (1 - Math.pow(1 - p, 3))));
     if (p < 1) requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);

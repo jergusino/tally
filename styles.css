@@ -121,7 +121,6 @@ main {
   letter-spacing: -0.075em;
   font-variant-numeric: tabular-nums;
   color: var(--ink);
-  transition: color 0.3s var(--ease);
   animation: numeral-in 0.9s var(--ease) both;
 }
 
