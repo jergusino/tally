@@ -13,6 +13,19 @@
 
 * { box-sizing: border-box; }
 
+/* Text is not selectable anywhere; the email field stays editable. */
+html, body {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+input,
+textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
 html {
   background-color: var(--bg);
   background-image: radial-gradient(circle, var(--dot) 1px, transparent 1.4px);
@@ -40,6 +53,8 @@ body { margin: 0; min-height: 100vh; overflow-x: hidden; }
 /* ---------- Top bar: black wordmark, red pill ---------- */
 
 .top {
+  position: relative;
+  z-index: 20;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -60,6 +75,7 @@ body { margin: 0; min-height: 100vh; overflow-x: hidden; }
 .wordmark.small { font-size: 1.25rem; }
 
 .pill-link {
+  display: inline-block;
   padding: 0.6rem 1.1rem;
   font-size: 0.9375rem;
   font-weight: 750;
@@ -100,8 +116,7 @@ main {
   line-height: 0.8;
   letter-spacing: -0.075em;
   font-variant-numeric: tabular-nums;
-  color: var(--ink);
-  transition: color 0.3s var(--ease);
+  color: var(--red);
   animation: numeral-in 0.9s var(--ease) both;
 }
 

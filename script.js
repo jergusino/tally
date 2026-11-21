@@ -7,22 +7,12 @@ const COUNT_MS = 1600;
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 const swipesEl = document.getElementById("swipes");
-const countEl = document.getElementById("count");
 const phoneCountEl = document.getElementById("phone-count");
 const phoneMinutesEl = document.getElementById("phone-minutes");
-
-// Promo colour climb, as in the reference reel: black, yellow at 50, orange at 86, red at 100.
-function colorFor(n) {
-  if (n >= 100) return "#ff3a37";
-  if (n >= 86) return "#f26b1d";
-  if (n >= 50) return "#ffc600";
-  return "#0a0a0a";
-}
 
 function render(n) {
   const minutes = Math.round((n * TARGET_MINUTES) / TARGET_SWIPES);
   swipesEl.textContent = n;
-  countEl.style.color = colorFor(n);
   // The phone overlay mirrors the stage number, as in the reference reel.
   phoneCountEl.textContent = n;
   phoneMinutesEl.textContent = `${minutes} min`;
