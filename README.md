@@ -9,6 +9,7 @@ Live at https://jergusino.github.io/tally/ once GitHub Pages is on (step 3).
 - `index.html`, `styles.css`, `script.js`: the page.
 - `apps-script/Code.gs`: the endpoint that writes signups to the sheet. It runs in Google Apps Script, not on GitHub.
 - `favicon.svg`: tab icon.
+- `images/feed.jpg`: the photo on the phone mockup in the hero. From Unsplash (free licence, cropped to phone-screen size).
 
 ## Setup
 

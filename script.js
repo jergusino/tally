@@ -9,6 +9,8 @@ const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 const swipesEl = document.getElementById("swipes");
 const minutesEl = document.getElementById("minutes");
 const countEl = document.getElementById("count");
+const phoneCountEl = document.getElementById("phone-count");
+const phoneMinutesEl = document.getElementById("phone-minutes");
 
 // Promo colour climb, as in the reference reel: black, yellow at 50, orange at 86, red at 100.
 function colorFor(n) {
@@ -19,9 +21,13 @@ function colorFor(n) {
 }
 
 function render(n) {
+  const minutes = Math.round((n * TARGET_MINUTES) / TARGET_SWIPES);
   swipesEl.textContent = n;
-  minutesEl.textContent = Math.round((n * TARGET_MINUTES) / TARGET_SWIPES);
+  minutesEl.textContent = minutes;
   countEl.style.color = colorFor(n);
+  // The phone overlay mirrors the hero count, as in the reference reel.
+  phoneCountEl.textContent = n;
+  phoneMinutesEl.textContent = `${minutes} min`;
 }
 
 // One load-time count-up. Reduced motion gets the final value straight away.

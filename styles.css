@@ -30,9 +30,10 @@ main {
   padding: 0 1.25rem;
 }
 
-/* Hero: the number is the product, so it leads. Colour climbs with the count. */
+/* ---------- Mobile (default): one centred column ---------- */
+
 .hero {
-  padding-top: 12vh;
+  padding-top: 10vh;
   text-align: center;
 }
 
@@ -47,7 +48,7 @@ main {
 }
 
 .timer {
-  margin: 0.5rem 0 3.5rem;
+  margin: 0.5rem 0 3rem;
   color: var(--dim);
   font-size: 1.25rem;
   font-variant-numeric: tabular-nums;
@@ -67,7 +68,6 @@ h1 {
   color: var(--dim);
 }
 
-/* Form */
 .form {
   margin: 2.5rem auto 0;
   max-width: 30rem;
@@ -79,13 +79,9 @@ h1 {
   margin-bottom: 0.4rem;
   font-size: 0.9375rem;
   font-weight: 600;
-  color: var(--ink);
 }
 
-.row {
-  display: flex;
-  gap: 0.5rem;
-}
+.row { display: flex; gap: 0.5rem; }
 
 input[type="email"] {
   flex: 1;
@@ -156,11 +152,236 @@ button:disabled { cursor: default; opacity: 0.7; }
   outline-offset: 3px;
 }
 
-/* Sections */
-.about,
-.privacy {
-  margin-top: 5rem;
+/* ---------- Phone mockup (sized in em: base 16px = 300px wide) ---------- */
+
+.device {
+  display: flex;
+  justify-content: center;
+  margin-top: 3.5rem;
+  perspective: 1400px;
 }
+
+.phone {
+  --pw: 250px;
+  position: relative;
+  width: var(--pw);
+  aspect-ratio: 9 / 19.5;
+  font-size: calc(var(--pw) / 300 * 16);
+  padding: 0.7em;
+  border-radius: 3em;
+  background: linear-gradient(145deg, #2e2e2e, #0b0b0b 60%);
+  box-shadow:
+    inset 0 0 0 0.12em #3d3d3d,
+    0 3.2em 4em -1.5em rgba(10, 10, 10, 0.35);
+  transform: rotateY(-16deg) rotateX(5deg) rotateZ(2deg);
+  transform-style: preserve-3d;
+}
+
+.screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 2.4em;
+  background: #000;
+  color: #fff;
+}
+
+.notch {
+  position: absolute;
+  top: 0.7em;
+  left: 50%;
+  z-index: 4;
+  width: 30%;
+  height: 1.6em;
+  transform: translateX(-50%);
+  border-radius: 1em;
+  background: #000;
+}
+
+.feed-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.feed-top {
+  position: absolute;
+  top: 2.8em;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 0.9em;
+  font-size: 0.8em;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  opacity: 0.85;
+}
+
+.feed-top .on { opacity: 1; }
+
+.feed-rail {
+  position: absolute;
+  right: 0.7em;
+  bottom: 6.5em;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9em;
+}
+
+.feed-rail i {
+  width: 1.7em;
+  height: 1.7em;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.feed-caption {
+  position: absolute;
+  left: 0.9em;
+  right: 3.6em;
+  bottom: 5.2em;
+  z-index: 2;
+  font-size: 0.8em;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.55);
+}
+
+.feed-caption strong { display: block; font-weight: 700; }
+
+.feed-nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  height: 4.4em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 2em;
+  background: rgba(10, 10, 10, 0.9);
+}
+
+.feed-nav i {
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 0.4em;
+  border: 0.13em solid rgba(255, 255, 255, 0.6);
+}
+
+.feed-nav i.active { border-color: #fff; }
+
+/* The Tally overlay: red number, red ring, small timer. */
+.tally {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 13em;
+  height: 13em;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  overflow: visible;
+}
+
+.ring circle {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 86 100;
+}
+
+.tally-count {
+  font-size: 6em;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+  color: var(--red);
+  text-shadow: 0 0.1em 0.9em rgba(0, 0, 0, 0.35);
+}
+
+.tally-time {
+  margin-top: 0.1em;
+  font-size: 1em;
+  font-weight: 700;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* ---------- Desktop: two columns, phone on the right ---------- */
+
+@media (min-width: 900px) {
+  main {
+    max-width: 72rem;
+    padding: 0 2.5rem;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: center;
+    gap: 4rem;
+    min-height: 88vh;
+    padding-top: 8vh;
+    text-align: left;
+  }
+
+  .count {
+    font-size: clamp(9rem, 15vw, 15rem);
+    margin-left: -0.04em;
+  }
+
+  .timer { margin: 0.5rem 0 3rem; }
+
+  h1 { font-size: 2.25rem; }
+
+  .lede { margin: 0; }
+
+  .form { margin: 2.5rem 0 0; }
+
+  .device { margin-top: 0; }
+
+  .phone {
+    --pw: 300px;
+    transform: rotateY(-22deg) rotateX(6deg) rotateZ(2deg);
+  }
+
+  /* Info: two columns under the hero, not stacked */
+  .info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 6rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .info .about,
+  .info .privacy { margin-top: 0; }
+
+  footer { margin: 4rem 0 3rem; }
+}
+
+/* ---------- Shared sections ---------- */
+
+.info { margin-top: 5rem; }
 
 h2 {
   margin: 0 0 0.75rem;
@@ -192,4 +413,9 @@ footer p { margin: 0; }
 @media (max-width: 480px) {
   .row { flex-direction: column; }
   button { width: 100%; }
+}
+
+/* Reduced motion: nothing animates or transitions */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
 }
