@@ -1,5 +1,5 @@
 // Paste the Apps Script web-app URL here (see README.md). Empty = the form says it is not connected yet.
-const ENDPOINT = "";
+const ENDPOINT = "https://script.google.com/macros/s/AKfycbz3rvslATTPCq9-Za0mbvlLJ-l6hu33g--UHXFxjE063qJ_HsKOjUPJyWK_YEN8iCrp/exec";
 
 const TARGET_SWIPES = 86;
 const TARGET_MINUTES = 14;
