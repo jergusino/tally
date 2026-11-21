@@ -196,6 +196,7 @@ main {
   background: #050505;
 }
 
+/* The screen: black reel, with the app's UI drawn over it. */
 .screen {
   position: relative;
   width: 100%;
@@ -206,24 +207,244 @@ main {
   color: #fff;
 }
 
-.screen-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .island {
   position: absolute;
   top: 0.75em;
   left: 50%;
-  z-index: 4;
+  z-index: 6;
   width: 30%;
   height: 1.6em;
   transform: translateX(-50%);
   border-radius: 1em;
   background: #000;
+}
+
+.ico {
+  width: 1.5em;
+  height: 1.5em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.statusbar {
+  position: absolute;
+  top: 0.85em;
+  left: 2.1em;
+  right: 1.9em;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.sys {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  fill: #fff;
+}
+
+.reels-top {
+  position: absolute;
+  top: 2.9em;
+  left: 1.1em;
+  right: 1.1em;
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reels-top .title {
+  font-size: 1.35em;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.reels-top .ico { width: 1.6em; height: 1.6em; }
+
+/* Right-hand action rail */
+.rail {
+  position: absolute;
+  right: 0.8em;
+  bottom: 7.4em;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.05em;
+}
+
+.act {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+  font-size: 0.72em;
+  font-weight: 600;
+}
+
+.act .ico { width: 1.9em; height: 1.9em; }
+
+.audio-thumb {
+  width: 1.8em;
+  height: 1.8em;
+  margin-top: 0.3em;
+  border-radius: 0.35em;
+  border: 0.12em solid rgba(255, 255, 255, 0.85);
+  background: #2a2a2a;
+}
+
+/* Caption block, bottom left */
+.caption {
+  position: absolute;
+  left: 0.95em;
+  right: 4.3em;
+  bottom: 6.2em;
+  z-index: 4;
+  font-size: 0.78em;
+  line-height: 1.35;
+}
+
+.caption p { margin: 0.35em 0 0; }
+
+.who {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.who strong { font-weight: 700; }
+
+.avatar {
+  width: 1.9em;
+  height: 1.9em;
+  border-radius: 50%;
+  border: 0.12em solid #fff;
+  background: #3a3a3a;
+}
+
+.follow {
+  padding: 0.22em 0.7em;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  border-radius: 0.35em;
+  font-weight: 600;
+}
+
+.audio {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: 0.95em;
+}
+
+.audio .ico { width: 1.1em; height: 1.1em; }
+
+/* Bottom tab bar */
+.tabbar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  height: 4.7em;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-top: 0.9em;
+  background: #000;
+  border-top: 0.06em solid rgba(255, 255, 255, 0.08);
+}
+
+.tab {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 2em;
+  color: #fff;
+}
+
+.tab .ico { width: 1.7em; height: 1.7em; }
+
+.tab.on::after {
+  content: "";
+  position: absolute;
+  bottom: -0.85em;
+  left: 50%;
+  width: 0.3em;
+  height: 0.3em;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.home-bar {
+  position: absolute;
+  bottom: 0.45em;
+  left: 50%;
+  z-index: 5;
+  width: 32%;
+  height: 0.28em;
+  transform: translateX(-50%);
+  border-radius: 0.2em;
+  background: #fff;
+}
+
+/* The Tally overlay: red count and timer, centred on the screen, no ring. */
+.tally {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.tally-count {
+  font-size: 6.2em;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+  color: var(--red);
+}
+
+.tally-time {
+  margin-top: 0.15em;
+  font-size: 1.05em;
+  font-weight: 700;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Light sweep: a soft glint crosses the glass every few seconds. */
+.sweep {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  pointer-events: none;
+  background: linear-gradient(110deg,
+    transparent 36%,
+    rgba(255, 255, 255, 0.16) 47%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0.06) 53%,
+    transparent 64%);
+  transform: translateX(-110%);
+  animation: sweep 6s ease-in-out 2.6s infinite;
+}
+
+@keyframes sweep {
+  0%       { transform: translateX(-110%); }
+  28%, 100% { transform: translateX(110%); }
 }
 
 /* Side buttons, sitting just outside the titanium rim. */
@@ -238,61 +459,6 @@ main {
 .btn-vol-up   { left: -0.2em;  top: 22%; height: 6.2%; }
 .btn-vol-down { left: -0.2em;  top: 30%; height: 6.2%; }
 .btn-power    { right: -0.2em; top: 27%; height: 9.5%; }
-
-/* The Tally overlay: red number, red ring, small timer. */
-.tally {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  z-index: 3;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  pointer-events: none;
-}
-
-.ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 13em;
-  height: 13em;
-  transform: translate(-50%, -50%) rotate(-90deg);
-  overflow: visible;
-}
-
-.ring circle {
-  fill: none;
-  stroke: var(--red);
-  stroke-width: 2.4;
-  stroke-linecap: round;
-  stroke-dasharray: 86 100;
-  animation: ring-draw 1.4s var(--ease) 0.9s both;
-}
-
-@keyframes ring-draw {
-  from { stroke-dasharray: 0 100; }
-  to   { stroke-dasharray: 86 100; }
-}
-
-.tally-count {
-  font-size: 6em;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -0.05em;
-  font-variant-numeric: tabular-nums;
-  color: var(--red);
-  text-shadow: 0 0.1em 0.9em rgba(0, 0, 0, 0.35);
-}
-
-.tally-time {
-  margin-top: 0.1em;
-  font-size: 1em;
-  font-weight: 700;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
-}
 
 /* ---------- Ask: headline and the red-pill signup ---------- */
 
