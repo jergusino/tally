@@ -121,13 +121,12 @@ main {
   letter-spacing: -0.075em;
   font-variant-numeric: tabular-nums;
   color: var(--ink);
-  transform: skewX(-10deg);
   animation: numeral-in 0.9s var(--ease) both;
 }
 
 @keyframes numeral-in {
-  from { opacity: 0; transform: translateY(0.12em) skewX(-10deg); }
-  to   { opacity: 1; transform: skewX(-10deg); }
+  from { opacity: 0; transform: translateY(0.12em); }
+  to   { opacity: 1; transform: none; }
 }
 
 .device {
@@ -155,7 +154,7 @@ main {
   font-size: calc(var(--pw) / 300 * 16);
   --half: 0.98em; /* half the body thickness: about 1.96em total, close to the real phone's depth */
   /* --tx / --ty come from the pointer on PC: a small lean toward the mouse. */
-  transform: rotateX(calc(6deg + var(--ty, 0) * -6deg)) rotateY(calc(var(--tx, 0) * 10deg)) rotateZ(-3deg);
+  transform: rotateX(calc(6deg + var(--ty, 0) * -6deg)) rotateY(calc(var(--tx, 0) * 10deg)) rotateZ(3deg);
   transform-style: preserve-3d;
   transition: transform 0.5s var(--ease);
 }
@@ -624,14 +623,14 @@ button:disabled { cursor: default; opacity: 0.7; transform: none; }
 .climb span {
   color: var(--c);
   opacity: 0;
-  transform: translateY(0.3em) skewX(-10deg);
+  transform: translateY(0.3em);
   transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
   transition-delay: calc(var(--i) * 0.12s);
 }
 
 .climb.in span {
   opacity: 1;
-  transform: skewX(-10deg);
+  transform: none;
 }
 
 /* ---------- Notes ---------- */
@@ -705,7 +704,7 @@ footer p { margin: 0; }
 
   .phone {
     --pw: 320px;
-    transform: rotateX(calc(6deg + var(--ty, 0) * -6deg)) rotateY(calc(var(--tx, 0) * 10deg)) rotateZ(-4deg);
+    transform: rotateX(calc(6deg + var(--ty, 0) * -6deg)) rotateY(calc(var(--tx, 0) * 10deg)) rotateZ(4deg);
   }
 
   .ask {
@@ -757,5 +756,5 @@ footer p { margin: 0; }
 /* Reduced motion: nothing animates or transitions; the phone stays on its front, the climb shows at once */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
-  .climb span { opacity: 1; transform: skewX(-10deg); }
+  .climb span { opacity: 1; transform: none; }
 }
