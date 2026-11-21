@@ -3,8 +3,11 @@
   --ink: #0a0a0a;
   --dim: #5c5c5c;
   --red: #ff3a37;
-  --rule: #cfcfcf;
+  --orange: #f26b1d;
+  --yellow: #ffc600;
+  --rule: #d4d4d4;
   --dot: #d9d9d9;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 * { box-sizing: border-box; }
@@ -22,147 +25,103 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
-body { margin: 0; min-height: 100vh; }
+body { margin: 0; min-height: 100vh; overflow-x: hidden; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Top bar: black wordmark, red pill ---------- */
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 0;
+}
+
+.wordmark {
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.wordmark.small { font-size: 1.25rem; }
+
+.pill-link {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.9375rem;
+  font-weight: 750;
+  color: #ffffff;
+  background: var(--red);
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.15s var(--ease), background-color 0.2s var(--ease);
+}
+
+.pill-link:hover { background: #e02f2c; }
+.pill-link:active { transform: scale(0.97); }
 
 main {
-  max-width: 36rem;
+  max-width: 72rem;
   margin: 0 auto;
   padding: 0 1.25rem;
 }
 
-/* ---------- Mobile (default): one centred column ---------- */
+/* ---------- Stage: the big number, the phone in front of it ---------- */
 
-.hero {
-  padding-top: 10vh;
-  text-align: center;
-}
-
-.count {
-  margin: 0;
-  font-size: clamp(7rem, 38vw, 14rem);
-  font-weight: 800;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
-  font-variant-numeric: tabular-nums;
-  color: var(--ink);
-}
-
-.timer {
-  margin: 0.5rem 0 3rem;
-  color: var(--dim);
-  font-size: 1.25rem;
-  font-variant-numeric: tabular-nums;
-}
-
-h1 {
-  margin: 0 0 0.75rem;
-  font-size: 1.75rem;
-  font-weight: 750;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-.lede {
-  margin: 0 auto;
-  max-width: 30rem;
-  color: var(--dim);
-}
-
-.form {
-  margin: 2.5rem auto 0;
-  max-width: 30rem;
-  text-align: left;
-}
-
-.form label:not(.consent) {
-  display: block;
-  margin-bottom: 0.4rem;
-  font-size: 0.9375rem;
-  font-weight: 600;
-}
-
-.row { display: flex; gap: 0.5rem; }
-
-input[type="email"] {
-  flex: 1;
-  min-width: 0;
-  padding: 0.8rem 1.1rem;
-  font: inherit;
-  color: var(--ink);
-  background: #ffffff;
-  border: 1.5px solid var(--ink);
-  border-radius: 999px;
-}
-
-input[type="email"]::placeholder { color: #8a8a8a; }
-
-/* Primary action: a red pill, the same shape as the app's on/off switch. */
-button {
-  padding: 0.8rem 1.4rem;
-  font: inherit;
-  font-weight: 700;
-  color: #ffffff;
-  background: var(--red);
-  border: 0;
-  border-radius: 999px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-button:hover { background: #e02f2c; }
-button:disabled { cursor: default; opacity: 0.7; }
-
-.consent {
+.stage {
+  position: relative;
   display: flex;
-  gap: 0.6rem;
-  align-items: flex-start;
-  margin-top: 1rem;
-  font-size: 0.9375rem;
-  color: var(--dim);
-  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3vh;
 }
 
-.consent input {
-  margin: 0.3rem 0 0;
-  width: 1.1rem;
-  height: 1.1rem;
-  flex: none;
-  accent-color: var(--red);
+.numeral {
+  margin: 0;
+  font-size: clamp(9rem, 40vw, 17rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.075em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+  transition: color 0.3s var(--ease);
+  animation: numeral-in 0.9s var(--ease) both;
 }
 
-.hp {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
+@keyframes numeral-in {
+  from { opacity: 0; transform: translateY(0.12em); }
+  to   { opacity: 1; transform: none; }
 }
-
-#status {
-  min-height: 1.6em;
-  margin: 0.75rem 0 0;
-  font-size: 0.9375rem;
-  font-weight: 600;
-}
-
-#status.error { color: var(--red); }
-
-:focus-visible {
-  outline: 3px solid var(--red);
-  outline-offset: 3px;
-}
-
-/* ---------- Phone mockup (sized in em: base 16px = 300px wide) ---------- */
 
 .device {
-  display: flex;
-  justify-content: center;
-  margin-top: 3.5rem;
+  position: relative;
+  z-index: 1;
+  margin-top: -10vw;
   perspective: 1400px;
+  animation: phone-in 1.2s var(--ease) 0.15s both;
 }
 
+@keyframes phone-in {
+  from { opacity: 0; transform: translateY(3rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Phone (sized in em: base 16px = 300px wide) ---------- */
+
 .phone {
-  --pw: 250px;
+  --pw: 230px;
   position: relative;
   width: var(--pw);
   aspect-ratio: 9 / 19.5;
@@ -173,7 +132,7 @@ button:disabled { cursor: default; opacity: 0.7; }
   box-shadow:
     inset 0 0 0 0.12em #3d3d3d,
     0 3.2em 4em -1.5em rgba(10, 10, 10, 0.35);
-  transform: rotateY(-16deg) rotateX(5deg) rotateZ(2deg);
+  transform: rotateX(8deg) rotateZ(-3deg);
   transform-style: preserve-3d;
 }
 
@@ -306,11 +265,17 @@ button:disabled { cursor: default; opacity: 0.7; }
   stroke-width: 2.4;
   stroke-linecap: round;
   stroke-dasharray: 86 100;
+  animation: ring-draw 1.4s var(--ease) 0.9s both;
+}
+
+@keyframes ring-draw {
+  from { stroke-dasharray: 0 100; }
+  to   { stroke-dasharray: 86 100; }
 }
 
 .tally-count {
   font-size: 6em;
-  font-weight: 800;
+  font-weight: 900;
   line-height: 1;
   letter-spacing: -0.05em;
   font-variant-numeric: tabular-nums;
@@ -325,97 +290,233 @@ button:disabled { cursor: default; opacity: 0.7; }
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
 }
 
-/* ---------- Desktop: two columns, phone on the right ---------- */
+/* ---------- Ask: headline and the red-pill signup ---------- */
 
-@media (min-width: 900px) {
-  main {
-    max-width: 72rem;
-    padding: 0 2.5rem;
-  }
-
-  .hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    align-items: center;
-    gap: 4rem;
-    min-height: 88vh;
-    padding-top: 8vh;
-    text-align: left;
-  }
-
-  .count {
-    font-size: clamp(9rem, 15vw, 15rem);
-    margin-left: -0.04em;
-  }
-
-  .timer { margin: 0.5rem 0 3rem; }
-
-  h1 { font-size: 2.25rem; }
-
-  .lede { margin: 0; }
-
-  .form { margin: 2.5rem 0 0; }
-
-  .device { margin-top: 0; }
-
-  .phone {
-    --pw: 300px;
-    transform: rotateY(-22deg) rotateX(6deg) rotateZ(2deg);
-  }
-
-  /* Info: two columns under the hero, not stacked */
-  .info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-top: 6rem;
-    padding-top: 3rem;
-    border-top: 1px solid var(--rule);
-  }
-
-  .info .about,
-  .info .privacy { margin-top: 0; }
-
-  footer { margin: 4rem 0 3rem; }
+.ask {
+  max-width: 34rem;
+  margin: 3.5rem auto 0;
+  text-align: center;
+  scroll-margin-top: 2rem;
 }
 
-/* ---------- Shared sections ---------- */
+h1 {
+  margin: 0 0 0.9rem;
+  font-size: clamp(2.1rem, 6vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
 
-.info { margin-top: 5rem; }
+.lede {
+  margin: 0 auto;
+  max-width: 28rem;
+  color: var(--dim);
+}
+
+.form {
+  position: relative;
+  margin: 2.25rem auto 0;
+  max-width: 30rem;
+  text-align: left;
+}
+
+/* A white pill with a red pill inside it: the app's switch, used as the form. */
+.pill-field {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.35rem 0.35rem 1.25rem;
+  background: #ffffff;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.pill-field:focus-within {
+  border-color: var(--red);
+  box-shadow: 0 0 0 4px rgba(255, 58, 55, 0.18);
+}
+
+.pill-field input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem 0;
+  font: inherit;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  outline: none;
+}
+
+.pill-field input::placeholder { color: #8a8a8a; }
+
+button {
+  padding: 0.8rem 1.5rem;
+  font: inherit;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--red);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.15s var(--ease), background-color 0.2s var(--ease);
+}
+
+button:hover { background: #e02f2c; }
+button:active { transform: scale(0.97); }
+button:disabled { cursor: default; opacity: 0.7; transform: none; }
+
+.consent {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin-top: 1rem;
+  padding-left: 1.25rem;
+  font-size: 0.9375rem;
+  color: var(--dim);
+  cursor: pointer;
+}
+
+.consent input {
+  margin: 0.3rem 0 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: none;
+  accent-color: var(--red);
+}
+
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+#status {
+  min-height: 1.6em;
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+#status.error { color: var(--red); }
+
+:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
+/* ---------- Climb: the reel's stages, in order ---------- */
+
+.climb {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.1em 0.5em;
+  margin: 6rem 0 0;
+  font-size: clamp(4.5rem, 17vw, 10rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  font-variant-numeric: tabular-nums;
+}
+
+.climb span {
+  color: var(--c);
+  opacity: 0;
+  transform: translateY(0.3em);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  transition-delay: calc(var(--i) * 0.12s);
+}
+
+.climb.in span {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Notes ---------- */
+
+.notes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  max-width: 60rem;
+  margin: 6rem auto 0;
+  padding-top: 3rem;
+  border-top: 2px solid var(--ink);
+}
 
 h2 {
   margin: 0 0 0.75rem;
-  font-size: 1.125rem;
-  font-weight: 750;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
 }
 
-.about p,
-.privacy p {
+.notes p {
   max-width: 60ch;
   margin: 0 0 1rem;
 }
 
-.privacy a,
+.notes a,
 footer a {
   color: var(--ink);
   text-underline-offset: 3px;
 }
 
 footer {
-  margin: 5rem 0 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  max-width: 72rem;
+  margin: 6rem auto 0;
+  padding: 2rem 1.25rem 3rem;
+  border-top: 1px solid var(--rule);
   font-size: 0.9rem;
   color: var(--dim);
 }
 
 footer p { margin: 0; }
 
-/* Narrow screens: stack the input and button */
-@media (max-width: 480px) {
-  .row { flex-direction: column; }
-  button { width: 100%; }
+/* ---------- Desktop: the stage gets wider, the phone larger, notes side by side ---------- */
+
+@media (min-width: 900px) {
+  .stage {
+    min-height: 88vh;
+    justify-content: center;
+    padding-top: 0;
+  }
+
+  .numeral { font-size: clamp(16rem, 30vw, 26rem); }
+
+  .device { margin-top: -10vw; }
+
+  .phone {
+    --pw: 320px;
+    transform: rotateX(6deg) rotateZ(-4deg);
+  }
+
+  .ask { margin-top: 2rem; }
+
+  h1 { font-size: 3.6rem; }
+
+  .notes { grid-template-columns: 1fr 1fr; gap: 4rem; }
 }
 
-/* Reduced motion: nothing animates or transitions */
+/* Narrow screens: stack the pill's input and button */
+@media (max-width: 480px) {
+  .pill-field { padding-right: 0.35rem; }
+  .pill-field button { padding: 0.75rem 1.1rem; }
+}
+
+/* Reduced motion: nothing animates or transitions, and the climb shows at once */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
+  .climb span { opacity: 1; transform: none; }
 }

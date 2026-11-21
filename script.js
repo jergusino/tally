@@ -7,7 +7,6 @@ const COUNT_MS = 1600;
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 const swipesEl = document.getElementById("swipes");
-const minutesEl = document.getElementById("minutes");
 const countEl = document.getElementById("count");
 const phoneCountEl = document.getElementById("phone-count");
 const phoneMinutesEl = document.getElementById("phone-minutes");
@@ -23,14 +22,13 @@ function colorFor(n) {
 function render(n) {
   const minutes = Math.round((n * TARGET_MINUTES) / TARGET_SWIPES);
   swipesEl.textContent = n;
-  minutesEl.textContent = minutes;
   countEl.style.color = colorFor(n);
-  // The phone overlay mirrors the hero count, as in the reference reel.
+  // The phone overlay mirrors the stage number, as in the reference reel.
   phoneCountEl.textContent = n;
   phoneMinutesEl.textContent = `${minutes} min`;
 }
 
-// One load-time count-up. Reduced motion gets the final value straight away.
+// One load-time count-up through the colour climb. Reduced motion gets the final value straight away.
 if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
   render(TARGET_SWIPES);
 } else {
@@ -41,6 +39,20 @@ if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     if (p < 1) requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);
+}
+
+// The colour climb plays once, when it scrolls into view.
+const climbEl = document.querySelector(".climb");
+if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const io = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+      climbEl.classList.add("in");
+      io.disconnect();
+    }
+  }, { threshold: 0.4 });
+  io.observe(climbEl);
+} else {
+  climbEl.classList.add("in");
 }
 
 const form = document.getElementById("wishlist");
@@ -95,6 +107,6 @@ form.addEventListener("submit", async (ev) => {
   } catch (err) {
     say("Could not save your email. Try again in a minute.", true);
     submitBtn.disabled = false;
-    submitBtn.textContent = "Join the wishlist";
+    submitBtn.textContent = "Join";
   }
 });
