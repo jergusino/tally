@@ -123,3 +123,18 @@ if (canTilt) {
     phoneEl.style.setProperty("--ty", y.toFixed(3));
   }, { passive: true });
 }
+
+// Nav button: if the signup is already on screen, highlight the field instead of scrolling to it.
+const navJoin = document.querySelector(".pill-link");
+const fieldWrap = document.querySelector(".pill-field");
+navJoin.addEventListener("click", (ev) => {
+  const r = emailEl.getBoundingClientRect();
+  const onScreen = r.bottom > 0 && r.top < window.innerHeight;
+  if (!onScreen) return; // off screen: let the link scroll down to the form
+  ev.preventDefault();
+  emailEl.focus({ preventScroll: true });
+  fieldWrap.classList.remove("flash");
+  void fieldWrap.offsetWidth; // restart the animation if clicked twice
+  fieldWrap.classList.add("flash");
+});
+fieldWrap.addEventListener("animationend", () => fieldWrap.classList.remove("flash"));
