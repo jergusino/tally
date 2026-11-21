@@ -1,0 +1,87 @@
+// Paste the Apps Script web-app URL here (see README.md). Empty = the form says it is not connected yet.
+const ENDPOINT = "";
+
+const TARGET_SWIPES = 86;
+const TARGET_MINUTES = 14;
+const COUNT_MS = 1600;
+const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+const swipesEl = document.getElementById("swipes");
+const minutesEl = document.getElementById("minutes");
+const countEl = document.getElementById("count");
+
+// Same colour steps as the app: white, then amber at 30, then red at 80.
+function render(n) {
+  swipesEl.textContent = n;
+  minutesEl.textContent = Math.round((n * TARGET_MINUTES) / TARGET_SWIPES);
+  countEl.style.color = n >= 80 ? "var(--red)" : n >= 30 ? "var(--amber)" : "var(--white)";
+}
+
+// One load-time count-up. Reduced motion gets the final value straight away.
+if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  render(TARGET_SWIPES);
+} else {
+  const start = performance.now();
+  const frame = (now) => {
+    const p = Math.min((now - start) / COUNT_MS, 1);
+    render(Math.round(TARGET_SWIPES * (1 - Math.pow(1 - p, 3))));
+    if (p < 1) requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+}
+
+const form = document.getElementById("wishlist");
+const emailEl = document.getElementById("email");
+const consentEl = document.getElementById("consent");
+const submitBtn = document.getElementById("submit");
+const statusEl = document.getElementById("status");
+
+function say(text, isError = false) {
+  statusEl.textContent = text;
+  statusEl.classList.toggle("error", isError);
+}
+
+form.addEventListener("submit", async (ev) => {
+  ev.preventDefault();
+  say("");
+
+  const email = emailEl.value.trim();
+  if (!EMAIL_RE.test(email)) {
+    say("That email does not look right. Check it and try again.", true);
+    emailEl.focus();
+    return;
+  }
+  if (!consentEl.checked) {
+    say("Tick the box so we can email you.", true);
+    consentEl.focus();
+    return;
+  }
+  if (!ENDPOINT) {
+    say("The wishlist is not connected yet. Try again later.", true);
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Saving...";
+
+  try {
+    const body = new URLSearchParams({
+      email,
+      consent: "on",
+      website: form.elements.namedItem("website").value, // honeypot, must stay empty
+    });
+    const res = await fetch(ENDPOINT, { method: "POST", body });
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || "server");
+
+    form.reset();
+    say(data.duplicate
+      ? "You are already on the list."
+      : "You are on the list. We will email you when Tally is ready.");
+    submitBtn.textContent = "Joined";
+  } catch (err) {
+    say("Could not save your email. Try again in a minute.", true);
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Join the wishlist";
+  }
+});

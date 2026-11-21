@@ -1,0 +1,187 @@
+:root {
+  --bg: #000000;
+  --white: #f4f4f4;
+  --dim: #a3a3a3;
+  --amber: #ffb000;
+  --red: #ff3b30;
+  --rule: #3a3a3a;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background: var(--bg);
+  color: var(--white);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body { margin: 0; min-height: 100vh; }
+
+main {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Hero: the number is the product, so it leads. */
+.hero {
+  padding-top: 12vh;
+  text-align: center;
+}
+
+.count {
+  margin: 0;
+  font-size: clamp(7rem, 38vw, 14rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+  color: var(--white);
+}
+
+.timer {
+  margin: 0.5rem 0 3.5rem;
+  color: var(--dim);
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+h1 {
+  margin: 0 0 0.75rem;
+  font-size: 1.75rem;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.lede {
+  margin: 0 auto;
+  max-width: 30rem;
+  color: var(--dim);
+}
+
+/* Form */
+.form {
+  margin: 2.5rem auto 0;
+  max-width: 30rem;
+  text-align: left;
+}
+
+.form label:not(.consent) {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9375rem;
+  color: var(--dim);
+}
+
+.row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input[type="email"] {
+  flex: 1;
+  min-width: 0;
+  padding: 0.8rem 1rem;
+  font: inherit;
+  color: var(--white);
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+}
+
+input[type="email"]::placeholder { color: #6b6b6b; }
+
+button {
+  padding: 0.8rem 1.25rem;
+  font: inherit;
+  font-weight: 650;
+  color: #000000;
+  background: var(--amber);
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+button:disabled { cursor: default; opacity: 0.7; }
+
+.consent {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  margin-top: 1rem;
+  font-size: 0.9375rem;
+  color: var(--dim);
+  cursor: pointer;
+}
+
+.consent input {
+  margin: 0.3rem 0 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: none;
+  accent-color: var(--amber);
+}
+
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+#status {
+  min-height: 1.6em;
+  margin: 0.75rem 0 0;
+  font-size: 0.9375rem;
+}
+
+#status.error { color: var(--red); }
+
+:focus-visible {
+  outline: 3px solid var(--amber);
+  outline-offset: 3px;
+}
+
+/* Sections */
+.about,
+.privacy {
+  margin-top: 5rem;
+}
+
+h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 650;
+}
+
+.about p,
+.privacy p {
+  max-width: 60ch;
+  margin: 0 0 1rem;
+}
+
+.privacy a,
+footer a {
+  color: var(--white);
+  text-underline-offset: 3px;
+}
+
+footer {
+  margin: 5rem 0 3rem;
+  font-size: 0.9rem;
+  color: var(--dim);
+}
+
+footer p { margin: 0; }
+
+/* Narrow screens: stack the input and button */
+@media (max-width: 480px) {
+  .row { flex-direction: column; }
+  button { width: 100%; }
+}

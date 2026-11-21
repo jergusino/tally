@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tally: Scroll Counter. Join the wishlist</title>
+  <meta name="description" content="Tally is an Android app that shows how many times you swipe and how long you scroll. Join the wishlist to hear when it is ready.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <p class="count" id="count" aria-hidden="true"><span id="swipes">86</span></p>
+      <p class="timer" aria-hidden="true"><span id="minutes">14</span> min</p>
+
+      <h1>Tally counts how much you scroll.</h1>
+      <p class="lede">It puts a number on your screen while you scroll a feed app, and the number gets louder as it climbs. It never blocks or locks anything.</p>
+
+      <form id="wishlist" class="form" novalidate>
+        <label for="email">Email</label>
+        <div class="row">
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <button type="submit" id="submit">Join the wishlist</button>
+        </div>
+        <label class="consent">
+          <input type="checkbox" id="consent" name="consent">
+          <span>Email me when Tally is available. I can unsubscribe any time.</span>
+        </label>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p id="status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="about">
+      <h2>What it does</h2>
+      <p>Pick the apps you scroll. Tally counts your swipes and minutes in them and shows the total in the middle of the screen. Touches still reach the app underneath.</p>
+      <p>Turn the number on all day, or only during a time window you set, such as 21:00 to 06:00.</p>
+      <p>Nothing is blocked. There are no time limits, no lock screens and no accounts. Tally reads no text or content from the apps it counts, and the counts stay on your phone.</p>
+      <p>Tally is Android only for now.</p>
+    </section>
+
+    <section class="privacy" id="privacy">
+      <h2>Your email</h2>
+      <p>Your address goes into a Google Sheet kept by Jergusino, and Google hosts that sheet. We use it to tell you when Tally is available and for nothing else. We do not sell it or share it.</p>
+      <p>To see, change or delete your address, email <a href="mailto:mail@jergusino.com">mail@jergusino.com</a>. You can also reply "unsubscribe" to any message we send you.</p>
+    </section>
+
+    <footer>
+      <p>Tally is made by Jergusino. Contact <a href="mailto:mail@jergusino.com">mail@jergusino.com</a>.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
