@@ -81,6 +81,10 @@ main {
 
 /* ---------- Stage: the big number, the phone in front of it ---------- */
 
+.hero {
+  display: block;
+}
+
 .stage {
   position: relative;
   display: flex;
@@ -130,8 +134,10 @@ main {
   aspect-ratio: 9 / 19.5;
   font-size: calc(var(--pw) / 300 * 16);
   --half: 0.98em; /* half the body thickness: about 1.96em total, close to the real phone's depth */
-  transform: rotateX(6deg) rotateZ(-3deg);
+  /* --tx / --ty come from the pointer on PC: a small lean toward the mouse. */
+  transform: rotateX(calc(6deg + var(--ty, 0) * -6deg)) rotateY(calc(var(--tx, 0) * 10deg)) rotateZ(-3deg);
   transform-style: preserve-3d;
+  transition: transform 0.5s var(--ease);
 }
 
 /* The turn: front, then the back photo, then front again. */
@@ -657,22 +663,45 @@ footer p { margin: 0; }
 /* ---------- Desktop: the stage gets wider, the phone larger, notes side by side ---------- */
 
 @media (min-width: 900px) {
-  .stage {
+  /* Two columns: the signup on the left, the phone and number on the right. */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 3rem;
     min-height: 88vh;
+    padding-top: 5vh;
+  }
+
+  .stage {
+    grid-column: 2;
+    grid-row: 1;
     justify-content: center;
     padding-top: 0;
   }
 
-  .numeral { font-size: clamp(16rem, 30vw, 26rem); }
+  .numeral { font-size: clamp(12rem, 24vw, 22rem); }
 
   .device { margin-top: -10vw; }
 
   .phone {
     --pw: 320px;
-    transform: rotateX(6deg) rotateZ(-4deg);
+    transform: rotateX(calc(6deg + var(--ty, 0) * -6deg)) rotateY(calc(var(--tx, 0) * 10deg)) rotateZ(-4deg);
   }
 
-  .ask { margin-top: 2rem; }
+  .ask {
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 0;
+    text-align: left;
+  }
+
+  .lede { margin: 0; }
+
+  .form { margin: 2.25rem 0 0; }
+
+  .consent,
+  #status { padding-left: 1.25rem; }
 
   h1 { font-size: 3.6rem; }
 

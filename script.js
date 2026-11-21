@@ -110,3 +110,16 @@ form.addEventListener("submit", async (ev) => {
     submitBtn.textContent = "Join";
   }
 });
+
+// PC only: the phone leans a little toward the pointer. Touch and reduced motion skip this.
+const canTilt = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+  && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (canTilt) {
+  const phoneEl = document.querySelector(".phone");
+  window.addEventListener("pointermove", (ev) => {
+    const x = (ev.clientX / window.innerWidth) * 2 - 1;   // -1 left .. 1 right
+    const y = (ev.clientY / window.innerHeight) * 2 - 1;  // -1 top .. 1 bottom
+    phoneEl.style.setProperty("--tx", x.toFixed(3));
+    phoneEl.style.setProperty("--ty", y.toFixed(3));
+  }, { passive: true });
+}
