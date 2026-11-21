@@ -41,6 +41,10 @@ html {
 
 body { margin: 0; min-height: 100vh; overflow-x: hidden; }
 
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -606,9 +610,9 @@ button:disabled { cursor: default; opacity: 0.7; transform: none; }
 
 .climb {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.1em 0.5em;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.05em;
   margin: 6rem 0 0;
   font-size: clamp(4.5rem, 17vw, 10rem);
   font-weight: 900;
@@ -722,6 +726,12 @@ footer p { margin: 0; }
   h1 { font-size: 3.6rem; }
 
   .notes { grid-template-columns: 1fr 1fr; gap: 4rem; }
+
+  .climb {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.1em 0.5em;
+  }
 }
 
 /* Highlight when the nav button points at a field that is already on screen */
