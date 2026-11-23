@@ -118,7 +118,8 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 #veil .gal-head, #veil .gal-txt { grid-column: 2; }
 .gal-head h2, .widgets h2, .never h2, .cta h2 { font-size: clamp(1.9rem, 3.8vw, 3rem); font-weight: 400; letter-spacing: -.04em; line-height: 1.08; }
 .gal-txt p, .widgets-copy p { color: var(--muted); max-width: 34rem; margin: 0 0 14px; }
-.gal-media { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
+.gal-media { grid-column: 2; grid-row: 1 / span 2; margin: 0; max-width: 480px; width: 100%; justify-self: end; }
+#veil .gal-media { justify-self: start; }
 #veil .gal-media { grid-column: 1; }
 .gal-media img { display: block; width: 100%; height: auto; padding: clamp(16px, 2.5vw, 32px); background: var(--surface); border-radius: 24px; }
 .cap { margin-top: 12px; font-size: .875rem; color: var(--muted); }
@@ -126,7 +127,7 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 .widgets-copy { grid-column: 1; grid-row: 2; }
 .widgets h2 { grid-column: 1; grid-row: 1; }
 .widgets-copy .small { font-size: .875rem; }
-.homescreen { grid-column: 2; grid-row: 1 / span 2; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 2vw, 24px); padding: clamp(16px, 2.5vw, 32px); background: var(--surface); border-radius: 24px; width: 100%; }
+.homescreen { grid-column: 2; grid-row: 1 / span 2; max-width: 480px; justify-self: end; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 2vw, 24px); padding: clamp(16px, 2.5vw, 32px); background: var(--surface); border-radius: 24px; width: 100%; }
 
 /* what Tally leaves alone: four plain columns */
 .never { padding-top: clamp(72px, 12vh, 136px); }
@@ -252,6 +253,7 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 .t-small { display: grid; align-content: center; gap: 4px; justify-content: start; }
 .t-small .w-num { font-size: 1.7rem; }
 .w-cap2 { font-size: .74rem; color: rgba(255, 255, 250, .6); line-height: 1.2; }
+.w-square .w-num.t { bottom: 58px; }
 .widget.off .w-num:not(.t) { color: rgba(255, 255, 250, .35); }
 
 
@@ -284,7 +286,7 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
   .phone { --pw: min(280px, 74vw); }
   .gal, .widgets-grid, .privacy { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
   .gal-head, .gal-txt, .gal-media, #veil .gal-head, #veil .gal-txt, #veil .gal-media, .widgets-copy, .widgets h2, .homescreen, .privacy p, .privacy h2 { grid-column: 1; grid-row: auto; }
-  .gal-media, .homescreen { margin-top: 16px; }
+  .gal-media, .homescreen { margin-top: 16px; max-width: 420px; justify-self: start; }
   .homescreen { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .never ul { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
   .foot-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
