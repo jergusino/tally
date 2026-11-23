@@ -79,8 +79,8 @@ function render() {
 }
 
 // One swipe is one scroll event: it counts (when Tally is on) and the feed moves to the next video.
-function swipe(dir = 1, auto = false) {
-  if (state.busy && !auto) return;
+function swipe(dir = 1) {
+  if (state.busy) return;
   state.busy = true;
   setTimeout(() => { state.busy = false; }, reduceMotion ? 0 : 260);
 
@@ -137,19 +137,72 @@ $("reset").addEventListener("click", () => {
   render();
 });
 
-// Plays 10 swipes in about 2 seconds, starting right away, so visitors see how the count and veil work.
-// Ease-out: swipe k lands at AUTO_MS * (1 - sqrt(1 - k/10)), so the first come fast and the last slow down.
-// Runs once, when the phone first comes on screen. Skipped for reduced motion (the Swipe button still works).
+// Plays 10 swipes as one continuous ease-out motion over about 2 seconds. The feed moves in a single
+// smooth stroke and the count and veil move with it. Runs once, when the phone first comes on screen.
+// Skipped for reduced motion (the Swipe button still works).
 const AUTO_SWIPES = 10;
 const AUTO_MS = 2000;
 let autoPlayed = false;
+const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
+
 function playTenSwipes() {
-  if (autoPlayed || reduceMotion) return;
+  if (autoPlayed || reduceMotion || state.busy) return;
   autoPlayed = true;
-  for (let k = 1; k <= AUTO_SWIPES; k++) {
-    const at = AUTO_MS * (1 - Math.sqrt(1 - k / AUTO_SWIPES));
-    setTimeout(() => swipe(1, true), at);
+  state.busy = true; // manual swipes are ignored until the run ends
+  hint.classList.add("gone");
+  state.hinted = false;
+
+  // Lay the next slides out below the current one, with no transitions: one frame moves them all.
+  const current = feed.lastElementChild;
+  const start = state.slide;
+  const ahead = [];
+  for (let i = 1; i <= AUTO_SWIPES; i++) {
+    const el = makeSlide(start + i);
+    el.style.transition = "none";
+    el.style.transform = `translateY(${i * 100}%)`;
+    feed.append(el);
+    ahead.push(el);
   }
+  if (current) current.style.transition = "none";
+
+  const t0 = performance.now();
+  const swipes0 = state.swipes;
+  const today0 = state.today;
+  let shown = 0; // whole swipes passed so far
+
+  const frame = (now) => {
+    const t = Math.min((now - t0) / AUTO_MS, 1);
+    const offset = easeOutCubic(t) * AUTO_SWIPES; // distance travelled, in slides
+    if (current) current.style.transform = `translateY(${-offset * 100}%)`;
+    ahead.forEach((el, i) => { el.style.transform = `translateY(${(i + 1 - offset) * 100}%)`; });
+
+    const passed = Math.floor(offset + 1e-9);
+    if (passed !== shown && state.on) {
+      shown = passed;
+      state.swipes = swipes0 + passed;
+      state.today = today0 + passed;
+      if (state.swipes % 50 === 0 && !reduceMotion) {
+        rings.classList.remove("pulse");
+        void rings.offsetWidth;
+        rings.classList.add("pulse");
+      }
+      if (state.swipes % 10 === 0) $("live").textContent = `${state.swipes} swipes counted`;
+      render();
+    }
+
+    if (t < 1) { requestAnimationFrame(frame); return; }
+
+    // Done: keep only the new current slide, back at its resting position.
+    if (current) current.remove();
+    ahead.slice(0, -1).forEach((el) => el.remove());
+    const last = ahead[ahead.length - 1];
+    last.style.transition = "";
+    last.style.transform = "";
+    state.slide = start + AUTO_SWIPES;
+    state.busy = false;
+    render();
+  };
+  requestAnimationFrame(frame);
 }
 if ("IntersectionObserver" in window) {
   const demoIo = new IntersectionObserver((entries, obs) => {
