@@ -1,6 +1,6 @@
 # Tally: site
 
-One static page for the Tally Android app. It shows the app with a playable demo and has a waitlist form. Emails go to the "Subscribers" tab of the "Newsletter signups" Google Sheet.
+One static page for the Tally Android app. It shows the app with a playable demo and has a waitlist form. Emails go to the `jergusino-mail` Cloudflare Worker at `https://api.jergusino.com/subscribe` (code and setup: `tools/mail-worker/` in the jergusino.github.io repo). It sends mail through Brevo from noreply@jergusino.com and stores signups in its D1 database.
 
 Live at https://jergusino.github.io/tally/ (GitHub Pages, branch `main`, folder `/`).
 
@@ -10,7 +10,6 @@ Live at https://jergusino.github.io/tally/ (GitHub Pages, branch `main`, folder 
 - `fonts/inter-latin-var.woff2`: Inter (variable), self-hosted, Latin only.
 - `images/number.webp`, `veil.webp`, `apps.webp`, `widgets-eye.webp`, `widgets-time.webp`: 3D-style graphics of the app screens, drawn from the UI spec (not photos of a phone).
 - `images/logo.svg`: eye and wordmark from the Tally logo. `images/favicon.png`: tab icon.
-- `apps-script/Code.gs`: the endpoint that writes signups to the sheet. It runs in Google Apps Script, not on GitHub.
 
 ## What is on the page
 
@@ -22,30 +21,21 @@ Live at https://jergusino.github.io/tally/ (GitHub Pages, branch `main`, folder 
 
 ## Setup
 
-### 1. Deploy the endpoint (once)
+### 1. Endpoint
 
-1. Open the sheet "Newsletter signups" in Google Drive.
-2. Extensions > Apps Script. Delete the default code and paste the contents of `apps-script/Code.gs`. Save.
-3. Deploy > New deployment > type "Web app". Execute as: Me. Who has access: Anyone.
-4. Authorize the script, then copy the web-app URL (ends in `/exec`).
+`ENDPOINT` in `script.js` is the Worker. The form posts `list=tally-wishlist`, `consent=on` and the honeypot `website`.
 
-After changing `Code.gs`: Deploy > Manage deployments > edit > New version. The URL stays the same.
-
-### 2. Connect the page
-
-Paste the URL into `ENDPOINT` at the top of `script.js`. Commit and push.
-
-### 3. Turn on GitHub Pages (once)
+### 2. Turn on GitHub Pages (once)
 
 Repo Settings > Pages > Source: "Deploy from a branch" > Branch: `main`, folder `/ (root)` > Save.
 
-### 4. Test
+### 3. Test
 
-Submit your own email with the box ticked. A new row should appear in the Subscribers tab with List = `tally-wishlist`. Submit the same address again: the page says you are already on the waitlist and no second row is added.
+Submit your own email with the box ticked. A confirm mail arrives; after the click the address is on the `tally-wishlist` list.
 
 ## Notes
 
-- Signups are single opt-in. Rows get a blank "Confirmed" value, like the existing font-tool and palette-pack rows. The portfolio privacy page says unconfirmed signups are deleted after 48 hours. That rule does not apply here yet, so either add a confirmation step or update that page before launch.
+- Signups are double opt-in; unconfirmed ones are deleted after 48 hours.
+- The Worker's confirm mail for Tally is in Slovak while this page is English.
 - The page loads nothing from other servers: no outside fonts, no analytics, no cookies.
 - Copy is in English. The app's interface language is still open.
-- The sheet list name stays `tally-wishlist` so older rows still match.
