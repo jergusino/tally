@@ -3,144 +3,181 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Tally: Scroll Counter. Join the wishlist</title>
-  <meta name="description" content="Tally is an Android app that shows how many times you swipe and how long you scroll. Join the wishlist to hear when it is ready.">
-  <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#ffffff">
+  <title>Tally: a number for every swipe. Join the waitlist</title>
+  <meta name="description" content="Tally is an Android app that counts your swipes and minutes, shows the total in the middle of your screen and slowly dims the screen as the count climbs. Join the waitlist.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#17161a">
   <link rel="icon" href="images/favicon.png" type="image/png">
+  <link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="top">
-    <a class="wordmark" href="#top" aria-label="Tally home">Tally</a>
-    <a class="pill-link" href="#join">Join the wishlist</a>
+    <div class="wrap bar">
+      <a class="logo" href="#top" aria-label="Tally home"><img src="images/logo.svg" alt="Tally" width="140" height="39"></a>
+      <a class="pill-link" href="#join">Join the waitlist</a>
+    </div>
   </header>
 
   <main id="top">
-    <div class="hero">
-    <section class="stage" aria-hidden="true">
-      <p class="numeral" id="count"><span id="swipes">86</span></p>
+    <div class="wrap showcase">
 
-      <div class="device">
+      <section class="intro">
+        <h1>See how much you scroll.</h1>
+        <p class="lede">Tally is an Android app. It counts your swipes and minutes in the apps you pick, puts the total in the middle of your screen, and slowly dims the screen as the count climbs.</p>
+
+        <form class="wishlist-form" id="join" novalidate>
+          <div class="pill-field">
+            <label class="sr-only" for="email-1">Email</label>
+            <input id="email-1" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <button type="submit">Join the waitlist</button>
+          </div>
+          <label class="consent">
+            <input type="checkbox" name="consent">
+            <span>Email me when Tally is available. I can unsubscribe any time.</span>
+          </label>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="status" role="status" aria-live="polite"></p>
+        </form>
+        <p class="small">Android only for now. Try the demo on the right.</p>
+        <noscript><p class="small">The waitlist form needs JavaScript. Or email <a href="mailto:mail@jergusino.com">mail@jergusino.com</a>.</p></noscript>
+      </section>
+
+      <aside class="demo" aria-label="Tally demo">
         <div class="phone">
-          <div class="phone-inner">
-            <span class="slice" style="--i:0"></span>
-            <span class="slice" style="--i:1"></span>
-            <span class="slice" style="--i:2"></span>
-            <span class="slice" style="--i:3"></span>
-            <span class="slice" style="--i:4"></span>
-            <span class="slice" style="--i:5"></span>
-            <span class="slice" style="--i:6"></span>
-            <span class="slice" style="--i:7"></span>
-            <span class="slice" style="--i:8"></span>
-            <span class="slice" style="--i:9"></span>
-            <span class="slice" style="--i:10"></span>
-            <span class="slice" style="--i:11"></span>
-            <span class="slice" style="--i:12"></span>
-            <div class="face">
-              <div class="frame">
-                <div class="bezel">
-                  <div class="screen">
-                    <div class="island"></div>
-                    <div class="statusbar">
-                      <span class="time">9:07</span>
-                      <span class="sys">
-                        <svg viewBox="0 0 18 12" width="1.1em" height="0.75em"><rect x="0" y="8" width="3" height="4" rx="0.6"/><rect x="5" y="5.5" width="3" height="6.5" rx="0.6"/><rect x="10" y="3" width="3" height="9" rx="0.6"/><rect x="15" y="0" width="3" height="12" rx="0.6"/></svg>
-                        <svg viewBox="0 0 16 12" width="1em" height="0.75em"><path d="M8 11.2 5.6 8.6a3.4 3.4 0 0 1 4.8 0zM3.2 6.4a6.8 6.8 0 0 1 9.6 0l-1.2 1.2a5.1 5.1 0 0 0-7.2 0zM.5 3.6a10.2 10.2 0 0 1 15 0l-1.2 1.2a8.5 8.5 0 0 0-12.6 0z"/></svg>
-                        <svg viewBox="0 0 26 12" width="1.9em" height="0.85em"><rect x="0.5" y="0.5" width="22" height="11" rx="3" fill="none" stroke="currentColor" stroke-width="1"/><rect x="2.5" y="2.5" width="14" height="7" rx="1.5"/><rect x="23.5" y="4" width="1.6" height="4" rx="0.6"/></svg>
-                      </span>
-                    </div>
-                    <header class="reels-top">
-                      <span class="title">Reels</span>
-                      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="3"/><circle cx="12" cy="13" r="3.5"/><path d="M8.5 6 10 4h4l1.5 2"/></svg>
-                    </header>
-                    <div class="rail">
-                      <div class="act"><svg class="ico" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.2 4.2 0 0 1 12 7.4 4.2 4.2 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg><span>131K</span></div>
-                      <div class="act"><svg class="ico" viewBox="0 0 24 24"><path d="M20.5 12a8.3 8.3 0 0 1-12.2 7.3L3.5 20.5l1.2-4.4A8.3 8.3 0 1 1 20.5 12z"/></svg><span>495</span></div>
-                      <div class="act"><svg class="ico" viewBox="0 0 24 24"><path d="M21.5 3 10.5 14M21.5 3l-6.8 18-4.2-7.5L3 9.3z"/></svg></div>
-                      <div class="act"><svg class="ico" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.4" fill="currentColor"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/><circle cx="19" cy="12" r="1.4" fill="currentColor"/></svg></div>
-                      <span class="audio-thumb"></span>
-                    </div>
-                    <div class="caption">
-                      <div class="who"><span class="avatar"></span><strong>@dailyfeed</strong><span class="follow">Follow</span></div>
-                      <p>one more video</p>
-                      <p class="audio"><svg class="ico" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>original audio</p>
-                    </div>
-                    <nav class="tabbar" aria-hidden="true">
-                      <span class="tab on"><svg class="ico" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9h-6v-6H9v6H3z"/></svg></span>
-                      <span class="tab"><svg class="ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg></span>
-                      <span class="tab"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4.5"/><path d="M10 8.5v7l5.5-3.5z"/></svg></span>
-                      <span class="tab"><svg class="ico" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></span>
-                      <span class="tab"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="10" r="3"/><path d="M6.5 19c1.4-2.4 3.3-3.4 5.5-3.4s4.1 1 5.5 3.4"/></svg></span>
-                    </nav>
-                    <span class="home-bar"></span>
-                    <div class="tally">
-                      <span class="tally-count" id="phone-count">86</span>
-                      <span class="tally-time" id="phone-minutes">14 min</span>
-                    </div>
-                    <div class="sweep"></div>
-                  </div>
-                </div>
-              </div>
-              <span class="btn btn-action"></span>
-              <span class="btn btn-vol-up"></span>
-              <span class="btn btn-vol-down"></span>
-              <span class="btn btn-power"></span>
+          <div class="screen" id="screen" tabindex="0" role="group" aria-label="Demo feed. Drag up, press Space, or use the Swipe button to swipe.">
+            <div class="feed" id="feed"></div>
+            <div class="veil" id="veil"></div>
+            <div class="rail" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.2 4.2 0 0 1 12 7.4 4.2 4.2 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M20.5 12a8.3 8.3 0 0 1-12.2 7.3L3.5 20.5l1.2-4.4A8.3 8.3 0 1 1 20.5 12z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M21.5 3 10.5 14M21.5 3l-6.8 18-4.2-7.5L3 9.3z"/></svg>
             </div>
-            <div class="back">
-              <img src="images/phone-back.png" alt="" width="275" height="596">
+            <div class="overlay" id="overlay" aria-hidden="true">
+              <span class="rings" id="rings"></span>
+              <span class="num" id="num">0</span>
+              <span class="mins" id="mins">0 min</span>
             </div>
+            <div class="statusbar" aria-hidden="true"><span>21:07</span><svg viewBox="0 0 26 12"><rect x="0.5" y="0.5" width="22" height="11" rx="3" fill="none" stroke="currentColor"/><rect x="2.5" y="2.5" width="14" height="7" rx="1.5"/><rect x="23.5" y="4" width="1.6" height="4" rx="0.6"/></svg></div>
+            <span class="cam" aria-hidden="true"></span>
+            <p class="hint" id="hint" aria-hidden="true">Swipe up</p>
+            <span class="gesture" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="status-card">
+            <button class="eye" id="master" type="button" role="switch" aria-checked="true" aria-label="Tally on"></button>
+            <span class="status-text"><strong id="master-text">Tally is on</strong><span id="readout">Veil 0%</span></span>
+          </div>
+          <div class="btn-row">
+            <button class="btn primary" id="swipe" type="button">Swipe</button>
+            <button class="btn" id="reset" type="button">Reset count</button>
+          </div>
+        </div>
+        <p class="sr-only" id="live" role="status" aria-live="polite"></p>
+      </aside>
+
+      <div class="features">
+        <section class="feat">
+          <h2>A number in the middle of the screen.</h2>
+          <p>Pick the apps you scroll. Tally counts swipes and minutes in them and shows the total over the app. The number turns from white to amber to red as it climbs.</p>
+          <div class="seg" role="group" aria-label="Overlay style">
+            <button type="button" data-mode="both" aria-pressed="true">Both</button>
+            <button type="button" data-mode="swipes" aria-pressed="false">Swipes</button>
+            <button type="button" data-mode="time" aria-pressed="false">Time</button>
+          </div>
+        </section>
+
+        <section class="feat">
+          <h2>The screen gets harder to see.</h2>
+          <p>With every swipe the edges close in a little more, until only a small clear patch is left. You set how fast. It never covers the middle completely, and touches still reach the app.</p>
+          <div class="slider">
+            <label for="speed">Veil speed</label>
+            <input id="speed" type="range" min="1" max="5" step="1" value="3">
+            <span class="ends"><span>Slow</span><span>Fast</span></span>
+          </div>
+        </section>
+
+        <section class="feat">
+          <h2>A few free swipes first.</h2>
+          <p>Grace swipes are the swipes before the number shows. Until they run out there is no number and no veil.</p>
+          <div class="step" role="group" aria-label="Grace swipes">
+            <button type="button" id="grace-down" aria-label="Fewer grace swipes">&minus;</button>
+            <output id="grace-val" for="grace-down grace-up">0</output>
+            <button type="button" id="grace-up" aria-label="More grace swipes">+</button>
+          </div>
+        </section>
+
+        <section class="feat">
+          <h2>Only when you want it.</h2>
+          <p>Show the number all day, or only inside a window you set, such as 21:00 to 06:00. Outside the window the number is off and counting keeps running.</p>
+          <div class="clock" aria-hidden="true" id="clock"></div>
+          <p class="clock-label" aria-hidden="true"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></p>
+        </section>
+      </div>
+    </div>
+
+    <section class="band" aria-labelledby="widgets-h">
+      <div class="wrap widgets">
+        <div class="widgets-copy">
+          <h2 id="widgets-h">On your home screen too.</h2>
+          <p>A widget shows today's total and an eye to switch Tally on or off. Tap the eye to pause counting. Tap anywhere else to open the app.</p>
+          <p class="small">These widgets are live. Use the eye, or swipe in the demo.</p>
+        </div>
+        <div class="homescreen">
+          <div class="widget w-square">
+            <button class="eye small-eye" type="button" role="switch" aria-checked="true" aria-label="Tally on" data-eye></button>
+            <span class="w-label">Today</span>
+            <span class="w-num" data-today>128</span>
+            <span class="w-cap" data-wcap>swipes today</span>
+          </div>
+          <div class="widget w-small">
+            <button class="eye small-eye" type="button" role="switch" aria-checked="true" aria-label="Tally on" data-eye></button>
+            <span class="w-right"><span class="w-num" data-today>128</span><span class="w-label">Today</span></span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="ask" id="join">
-      <h1>Count how far you scroll.</h1>
-      <p class="lede">Tally puts your swipes and minutes on screen while you scroll. It never blocks an app or locks your phone.</p>
+    <section class="wrap never" aria-labelledby="never-h">
+      <h2 id="never-h">What Tally leaves alone.</h2>
+      <ul>
+        <li><strong>Your apps.</strong> Tally never blocks an app or locks your phone. Touches pass through to the app underneath.</li>
+        <li><strong>Your content.</strong> It reads no text, messages or posts from the apps it counts. The counts stay on your phone.</li>
+        <li><strong>Your time.</strong> No time limits, no accounts, no streaks, no scores and no history.</li>
+        <li><strong>Your choice.</strong> You pick the apps, the style, the veil speed and the hours.</li>
+      </ul>
+    </section>
 
-      <form id="wishlist" class="form" novalidate>
-        <label class="pill-field" for="email">
-          <span class="sr-only">Email</span>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-          <button type="submit" id="submit">Join</button>
-        </label>
+    <section class="wrap cta" aria-labelledby="cta-h">
+      <h2 id="cta-h">Hear when Tally is ready.</h2>
+      <p class="lede">One email when it is available. Nothing else.</p>
+      <form class="wishlist-form" novalidate>
+        <div class="pill-field">
+          <label class="sr-only" for="email-2">Email</label>
+          <input id="email-2" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <button type="submit">Join the waitlist</button>
+        </div>
         <label class="consent">
-          <input type="checkbox" id="consent" name="consent">
+          <input type="checkbox" name="consent">
           <span>Email me when Tally is available. I can unsubscribe any time.</span>
         </label>
         <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <p id="status" role="status" aria-live="polite"></p>
+        <p class="status" role="status" aria-live="polite"></p>
       </form>
     </section>
-    </div>
 
-    <section class="climb" aria-hidden="true">
-      <span style="--c:#0a0a0a; --i:0">3</span>
-      <span style="--c:#ffc600; --i:1">50</span>
-      <span style="--c:#f26b1d; --i:2">86</span>
-      <span style="--c:#ff3a37; --i:3">100</span>
+    <section class="wrap privacy" id="privacy" aria-labelledby="priv-h">
+      <h2 id="priv-h">Your email</h2>
+      <p>Your address goes into a Google Sheet kept by Jergusino, and Google hosts that sheet. We use it to tell you when Tally is available and for nothing else. We do not sell it or share it.</p>
+      <p>To see, change or delete your address, email <a href="mailto:mail@jergusino.com">mail@jergusino.com</a>. You can also reply "unsubscribe" to any message we send you.</p>
+      <p>This page loads nothing from other servers: no outside fonts, no analytics, no cookies.</p>
     </section>
 
-    <section class="notes">
-      <article>
-        <h2>What it does</h2>
-        <p>Pick the apps you scroll. Tally counts your swipes and minutes in them and shows the total in the middle of the screen. Touches still reach the app underneath.</p>
-        <p>Turn the number on all day, or only during a time window you set, such as 21:00 to 06:00.</p>
-        <p>Nothing is blocked. There are no time limits, no lock screens and no accounts. Tally reads no text or content from the apps it counts, and the counts stay on your phone.</p>
-        <p>Tally is Android only for now.</p>
-      </article>
-
-      <article id="privacy">
-        <h2>Your email</h2>
-        <p>Your address goes into a Google Sheet kept by Jergusino, and Google hosts that sheet. We use it to tell you when Tally is available and for nothing else. We do not sell it or share it.</p>
-        <p>To see, change or delete your address, email <a href="mailto:mail@jergusino.com">mail@jergusino.com</a>. You can also reply "unsubscribe" to any message we send you.</p>
-      </article>
-    </section>
-    <footer>
-        <span class="wordmark small">Tally</span>
-        <p>Made by Jergusino. <a href="mailto:mail@jergusino.com">mail@jergusino.com</a></p>
-      </footer>
+    <footer class="wrap foot">
+      <p>Made by Jergusino. <a href="mailto:mail@jergusino.com">mail@jergusino.com</a></p>
+    </footer>
   </main>
 
   <script src="script.js"></script>
