@@ -137,22 +137,30 @@ $("reset").addEventListener("click", () => {
   render();
 });
 
-// Plays 10 swipes in a row, one every 420ms, so the feed visibly runs through them.
+// Plays 10 swipes in a row, one every 420ms, so visitors see how the count and veil work.
+// Runs once, when the phone first comes on screen. Skipped for reduced motion (the Swipe button still works).
 // A step that lands while the previous swipe is still animating waits and retries, so none are lost.
-const autoBtn = $("auto");
-autoBtn.addEventListener("click", () => {
-  if (autoBtn.disabled) return;
+let autoPlayed = false;
+function playTenSwipes() {
+  if (autoPlayed || reduceMotion) return;
+  autoPlayed = true;
   let left = 10;
-  autoBtn.disabled = true;
   const step = () => {
     if (state.busy) { setTimeout(step, 60); return; }
     swipe(1);
     left -= 1;
-    if (left > 0) setTimeout(step, reduceMotion ? 60 : 420);
-    else autoBtn.disabled = false;
+    if (left > 0) setTimeout(step, 420);
   };
   step();
-});
+}
+if ("IntersectionObserver" in window) {
+  const demoIo = new IntersectionObserver((entries, obs) => {
+    if (entries[0].isIntersecting) { obs.disconnect(); setTimeout(playTenSwipes, 900); }
+  }, { threshold: 0.6 });
+  demoIo.observe($("screen"));
+} else {
+  setTimeout(playTenSwipes, 900);
+}
 
 // Every eye switch (under the phone and on the widgets) is the same master switch.
 document.querySelectorAll(".eye").forEach((el) => {
