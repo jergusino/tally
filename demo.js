@@ -137,6 +137,23 @@ $("reset").addEventListener("click", () => {
   render();
 });
 
+// Plays 10 swipes in a row, one every 420ms, so the feed visibly runs through them.
+// A step that lands while the previous swipe is still animating waits and retries, so none are lost.
+const autoBtn = $("auto");
+autoBtn.addEventListener("click", () => {
+  if (autoBtn.disabled) return;
+  let left = 10;
+  autoBtn.disabled = true;
+  const step = () => {
+    if (state.busy) { setTimeout(step, 60); return; }
+    swipe(1);
+    left -= 1;
+    if (left > 0) setTimeout(step, reduceMotion ? 60 : 420);
+    else autoBtn.disabled = false;
+  };
+  step();
+});
+
 // Every eye switch (under the phone and on the widgets) is the same master switch.
 document.querySelectorAll(".eye").forEach((el) => {
   el.addEventListener("click", () => { state.on = !state.on; render(); });

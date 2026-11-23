@@ -180,6 +180,8 @@ h1 {
 .btn { flex: 1; padding: 12px 16px; border-radius: 999px; background: var(--panel); border: 1px solid rgba(255, 255, 250, .16); font-weight: 600; }
 .btn:hover { background: var(--raised); }
 .btn.primary { background: var(--ink); color: #17161a; border-color: var(--ink); }
+.btn:disabled { opacity: .6; cursor: default; }
+.btn:disabled:hover { background: var(--panel); }
 .btn.primary:hover { background: #fff; }
 
 /* the eye switch */
