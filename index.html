@@ -42,7 +42,7 @@
           <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           <p class="status" role="status" aria-live="polite"></p>
         </form>
-        <p class="small">Android only for now. Try the demo below.</p>
+        <p class="small">Android only for now. Drag the phone below to try it.</p>
         <noscript><p class="small">The waitlist form needs JavaScript. Or email <a href="mailto:mail@jergusino.com">mail@jergusino.com</a>.</p></noscript>
     </section>
 
@@ -50,7 +50,7 @@
       <div class="stage">
       <aside class="demo" aria-label="Tally demo">
         <div class="phone">
-          <div class="screen" id="screen" tabindex="0" role="group" aria-label="Demo feed. Drag up, press Space, or use the Swipe button to swipe.">
+          <div class="screen" id="screen" tabindex="0" role="group" aria-label="Demo feed. Drag up or down, or press Space, to swipe.">
             <div class="feed" id="feed"></div>
             <div class="veil" id="veil-fx"></div>
             <div class="rail" aria-hidden="true">
@@ -67,13 +67,6 @@
             <span class="cam" aria-hidden="true"></span>
             <p class="hint" id="hint" aria-hidden="true">Swipe up</p>
             <span class="gesture" aria-hidden="true"></span>
-          </div>
-        </div>
-
-        <div class="controls">
-          <div class="btn-row">
-            <button class="btn primary" id="swipe" type="button">Swipe</button>
-            <button class="btn" id="reset" type="button">Reset count</button>
           </div>
         </div>
         <p class="sr-only" id="live" role="status" aria-live="polite"></p>
@@ -98,23 +91,6 @@
             <input id="speed" type="range" min="1" max="5" step="1" value="3">
             <span class="ends"><span>Slow</span><span>Fast</span></span>
           </div>
-        </section>
-
-        <section class="feat">
-          <h2>A few free swipes first.</h2>
-          <p>Grace swipes are the swipes before the number shows. Until they run out there is no number and no veil.</p>
-          <div class="step" role="group" aria-label="Grace swipes">
-            <button type="button" id="grace-down" aria-label="Fewer grace swipes">&minus;</button>
-            <output id="grace-val" for="grace-down grace-up">0</output>
-            <button type="button" id="grace-up" aria-label="More grace swipes">+</button>
-          </div>
-        </section>
-
-        <section class="feat">
-          <h2>Only when you want it.</h2>
-          <p>Show the number all day, or only inside a window you set, such as 21:00 to 06:00. Outside the window the number is off and counting keeps running.</p>
-          <div class="clock" aria-hidden="true" id="clock"></div>
-          <p class="clock-label" aria-hidden="true"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></p>
         </section>
       </div>
       </div>

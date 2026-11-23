@@ -129,13 +129,6 @@ screen.addEventListener("keydown", (ev) => {
   else if (ev.key === "ArrowDown") { ev.preventDefault(); swipe(-1); }
 });
 
-$("swipe").addEventListener("click", () => swipe(1));
-$("reset").addEventListener("click", () => {
-  // Today's total keeps going. Only the session count starts again, as it does after a break in the real app.
-  state.swipes = 0;
-  $("live").textContent = "Count reset";
-  render();
-});
 
 // Plays 10 swipes as one continuous ease-out motion over about 2 seconds. The feed moves in a single
 // smooth stroke and the count and veil move with it. Runs once, when the phone first comes on screen.
@@ -229,13 +222,5 @@ const speedEl = $("speed");
 const fillSpeed = () => speedEl.style.setProperty("--p", `${((speedEl.value - 1) / 4) * 100}%`);
 speedEl.addEventListener("input", () => { state.speed = Number(speedEl.value); fillSpeed(); render(); });
 fillSpeed();
-const graceVal = $("grace-val");
-function setGrace(v) {
-  state.grace = Math.max(0, Math.min(20, v));
-  graceVal.textContent = state.grace;
-  render();
-}
-$("grace-down").addEventListener("click", () => setGrace(state.grace - 1));
-$("grace-up").addEventListener("click", () => setGrace(state.grace + 1));
 
 render();
