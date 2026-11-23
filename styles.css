@@ -308,3 +308,10 @@ h1 {
 }
 .w-square .w-num.t { bottom: 58px; }
 
+
+@media (min-width: 901px) {
+  .flip.gal .gal-txt { grid-column: 2; }
+  .flip.gal img, .flip.gal .cap { grid-column: 1; }
+  .widgets.flip .widgets-copy { order: 2; }
+  .widgets.flip .homescreen { justify-self: start; }
+}
