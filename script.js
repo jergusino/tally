@@ -1,5 +1,5 @@
-// Apps Script web-app URL that saves signups to the sheet (see README.md).
-const ENDPOINT = "https://script.google.com/macros/s/AKfycbz3rvslATTPCq9-Za0mbvlLJ-l6hu33g--UHXFxjE063qJ_HsKOjUPJyWK_YEN8iCrp/exec";
+// Cloudflare Worker jergusino-mail (code: jergusino.github.io/tools/mail-worker). Sends through Brevo; double opt-in.
+const ENDPOINT = "https://api.jergusino.com/subscribe";
 const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -45,7 +45,9 @@ function initForm(form) {
     try {
       const body = new URLSearchParams({
         email,
+        list: "tally-wishlist",
         consent: "on",
+        source: location.host + location.pathname,
         website: form.elements.namedItem("website").value, // honeypot, must stay empty
       });
       const res = await fetch(ENDPOINT, { method: "POST", body });
@@ -53,10 +55,8 @@ function initForm(form) {
       if (!data.ok) throw new Error(data.error || "server");
 
       form.reset();
-      say(data.duplicate
-        ? "You are already on the waitlist."
-        : "You are on the waitlist. We will email you when Tally is ready.");
-      submitBtn.textContent = "Joined";
+      say("Almost done. Check your inbox (and spam) and click the link to confirm.");
+      submitBtn.textContent = "Check your inbox";
     } catch (err) {
       say("Could not save your email. Try again in a minute.", true);
       submitBtn.disabled = false;
