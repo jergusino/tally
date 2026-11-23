@@ -139,7 +139,10 @@ document.querySelectorAll("[data-mode]").forEach((btn) => {
     render();
   });
 });
-$("speed").addEventListener("input", (ev) => { state.speed = Number(ev.target.value); render(); });
+const speedEl = $("speed");
+const fillSpeed = () => speedEl.style.setProperty("--p", `${((speedEl.value - 1) / 4) * 100}%`);
+speedEl.addEventListener("input", () => { state.speed = Number(speedEl.value); fillSpeed(); render(); });
+fillSpeed();
 const graceVal = $("grace-val");
 function setGrace(v) {
   state.grace = Math.max(0, Math.min(20, v));
