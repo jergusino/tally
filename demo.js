@@ -65,8 +65,6 @@ function render() {
   const p = shown ? Math.min((n - state.grace) / RAMP[state.speed - 1], 1) : 0;
   veil.style.setProperty("--hole", (100 - 80 * p).toFixed(2));
   veil.style.setProperty("--a", (0.95 * Math.min(1, p * 1.25)).toFixed(3));
-  $("readout").textContent = state.on ? `Veil ${Math.round(p * 100)}%` : "Counting is paused";
-  $("master-text").textContent = state.on ? "Tally is on" : "Tally is off";
 
   document.querySelectorAll("[data-today]").forEach((el) => { el.textContent = state.today.toLocaleString("en-US"); });
   document.querySelectorAll("[data-wcap]").forEach((el) => { el.textContent = state.on ? "swipes today" : "paused"; });
