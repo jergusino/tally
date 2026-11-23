@@ -126,7 +126,7 @@
         <p>Tally shows the total over the apps you pick. It starts small and white, grows, turns amber, then red, and sends out a ring every 50th swipe. It is semi-transparent, and touches go through to the app underneath.</p>
         <p>The default shows swipes with the minutes small under them. You can switch to swipes only, or to time only. Time counts only while one of your apps is in front, and after a short break the count starts again. The exact steps and timing may change before release.</p>
       </div>
-      <img src="images/number.webp" alt="Three phones showing the Tally number at 12, 48 and 120 swipes, growing and changing from white to amber to red" width="1988" height="1269" loading="lazy">
+      <img src="images/number.webp" alt="Three phones showing the Tally number at 12, 48 and 120 swipes, growing and changing from white to amber to red" width="1988" height="1280" loading="lazy">
       <p class="cap">12, 48 and 120 swipes.</p>
     </section>
 
@@ -136,7 +136,7 @@
         <p>Edges go dark first. At the end only a small clear patch is left, about a quarter of the screen across. The veil is black, and the number is drawn above it, so the count stays easy to read.</p>
         <p>It does not block touches. They pass through to the app underneath, so there is no trap and no button to find. It draws only over the apps you picked, and it never touches system screens or calls.</p>
       </div>
-      <img src="images/veil.webp" alt="Three phones showing the veil at 20, 60 and 150 swipes, closing in from the edges" width="1748" height="1316" loading="lazy">
+      <img src="images/veil.webp" alt="Three phones showing the veil at 20, 60 and 150 swipes, closing in from the edges" width="1748" height="1344" loading="lazy">
       <p class="cap">20, 60 and 150 swipes.</p>
     </section>
 
@@ -144,25 +144,37 @@
       <div class="wrap widgets">
         <div class="widgets-copy">
           <h2 id="widgets-h">On your home screen too.</h2>
-          <p>A widget shows today's total and an eye to switch Tally on or off. Tap the eye to pause counting. Tap anywhere else to open the app.</p>
-          <p class="small">These widgets are live. Use the eye, or swipe in the demo.</p>
+          <p>Two widgets. The eye widget shows today's swipes and an eye to switch Tally on or off. The time widget shows today's minutes with one plain line about what that time could be.</p>
+          <p>Tap the eye to pause counting. Tap anywhere else to open Tally. When it is off, the number dims and the label says paused.</p>
+          <p class="small">These widgets are live. Use the eye, or swipe in the demo. The daily total resets at midnight on your phone's clock, with no history. Widgets are part of the prototype and may change.</p>
         </div>
         <div class="homescreen">
-          <div class="widget w-square">
-            <button class="eye small-eye" type="button" role="switch" aria-checked="true" aria-label="Tally on" data-eye></button>
-            <span class="w-label">Today</span>
-            <span class="w-num" data-today>128</span>
-            <span class="w-cap" data-wcap>swipes today</span>
+          <div class="wcol">
+            <div class="widget w-square">
+              <button class="eye small-eye" type="button" role="switch" aria-checked="true" aria-label="Tally on" data-eye></button>
+              <span class="w-label">Today</span>
+              <span class="w-num" data-today>128</span>
+              <span class="w-cap" data-wcap>swipes today</span>
+            </div>
+            <div class="widget w-small">
+              <button class="eye small-eye" type="button" role="switch" aria-checked="true" aria-label="Tally on" data-eye></button>
+              <span class="w-right"><span class="w-num" data-today>128</span><span class="w-label">Today</span></span>
+            </div>
+            <p class="wname">Eye widget</p>
           </div>
-          <div class="widget w-small">
-            <button class="eye small-eye" type="button" role="switch" aria-checked="true" aria-label="Tally on" data-eye></button>
-            <span class="w-right"><span class="w-num" data-today>128</span><span class="w-label">Today</span></span>
+          <div class="wcol">
+            <div class="widget w-square">
+              <span class="w-label">Today</span>
+              <span class="w-num t"><span data-mins>21</span><small> min</small></span>
+              <span class="w-cap" data-line>About 1 20-minute book chapter</span>
+            </div>
+            <div class="widget w-small t-small">
+              <span class="w-num t"><span data-mins>21</span><small> min</small></span>
+              <span class="w-cap2" data-line>About 1 20-minute book chapter</span>
+            </div>
+            <p class="wname">Time widget</p>
           </div>
         </div>
-      </div>
-      <div class="wrap w3d">
-        <img src="images/widgets-eye.webp" alt="The eye widget in square and small sizes, on and off, floating in 3D" width="1174" height="594" loading="lazy"><img src="images/widgets-time.webp" alt="The time widget showing 47 minutes and a line about a 30-minute walk" width="916" height="399" loading="lazy">
-        <p class="cap">The eye widget (top) and the time widget (right). Under 10 minutes the time widget shows no extra line. The daily total resets at midnight on your phone's clock, with no history. The widgets are part of the prototype and may change.</p>
       </div>
     </section>
 
@@ -172,7 +184,7 @@
         <p>Tally finds common social apps and turns them on for you. Turn on any other installed app, and turn off any you do not want counted. Browsers are off by default. If you turn one on, the whole browser counts, because Tally does not look at which site you are on.</p>
         <p>To count swipes in other apps, Tally uses Android's accessibility service, and it draws the number over them. Android asks you to turn this on yourself. Tally reads no text, messages or posts. It counts scroll events and the time an app is in front.</p>
       </div>
-      <img src="images/apps.webp" alt="Tally home screen and two Settings screens: overlay style, intensity, veil speed, obstruction max, grace swipes and watched apps" width="1945" height="1259" loading="lazy">
+      <img src="images/apps.webp" alt="Tally home screen and two Settings screens: overlay style, intensity, veil speed, obstruction max, grace swipes and watched apps" width="1945" height="1282" loading="lazy">
       <p class="cap">Home, and Settings. Drawn from the app design, not photos of a phone.</p>
     </section>
 

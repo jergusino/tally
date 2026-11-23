@@ -38,6 +38,15 @@ function colorFor(n) {
   return ["#fffffa", "rgba(255, 255, 250, .28)"];
 }
 
+// Largest activities that fit today's minutes. Nothing under 10 minutes. Rough round numbers.
+const ACTS = [[30, "30-minute walk", "30-minute walks"], [20, "20-minute book chapter", "20-minute book chapters"], [15, "15-minute language lesson", "15-minute language lessons"], [10, "10-minute stretch", "10-minute stretches"]];
+function suggest(m) {
+  if (m < 10) return "";
+  const a = ACTS.find((x) => m >= x[0]);
+  const n = Math.floor(m / a[0]);
+  return `About ${n} ${n === 1 ? a[1] : a[2]}`;
+}
+
 function render() {
   const n = state.swipes;
   const shown = state.on && n > state.grace;
@@ -62,6 +71,9 @@ function render() {
   document.querySelectorAll("[data-today]").forEach((el) => { el.textContent = state.today.toLocaleString("en-US"); });
   document.querySelectorAll("[data-wcap]").forEach((el) => { el.textContent = state.on ? "swipes today" : "paused"; });
   document.querySelectorAll(".widget").forEach((el) => el.classList.toggle("off", !state.on));
+  const tmins = Math.round(state.today * MIN_PER_SWIPE);
+  document.querySelectorAll("[data-mins]").forEach((el) => { el.textContent = tmins; });
+  document.querySelectorAll("[data-line]").forEach((el) => { el.textContent = suggest(tmins); });
   document.querySelectorAll(".eye").forEach((el) => {
     el.setAttribute("aria-checked", String(state.on));
     el.setAttribute("aria-label", state.on ? "Tally on" : "Tally off");
