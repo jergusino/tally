@@ -15,7 +15,7 @@ const feed = $("feed");
 const overlay = $("overlay");
 const numEl = $("num");
 const minsEl = $("mins");
-const veil = $("veil");
+const veil = $("veil-fx");
 const rings = $("rings");
 const hint = $("hint");
 

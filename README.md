@@ -6,8 +6,9 @@ Live at https://jergusino.github.io/tally/ (GitHub Pages, branch `main`, folder 
 
 ## Files
 
-- `index.html`, `styles.css`, `script.js`: the page. No build step.
+- `index.html`, `styles.css`, `script.js` (forms, nav), `demo.js` (the demo phone): one page with sections #number, #veil, #widgets and #settings. The nav scrolls smoothly to them. No build step.
 - `fonts/inter-latin-var.woff2`: Inter (variable), self-hosted, Latin only.
+- `images/number.webp`, `veil.webp`, `apps.webp`, `widgets-eye.webp`, `widgets-time.webp`: 3D-style graphics of the app screens, drawn from the UI spec (not photos of a phone).
 - `images/logo.svg`: eye and wordmark from the Tally logo. `images/favicon.png`: tab icon.
 - `apps-script/Code.gs`: the endpoint that writes signups to the sheet. It runs in Google Apps Script, not on GitHub.
 

@@ -88,3 +88,24 @@ if (clock) for (let h = 0; h < 24; h++) {
   clock.append(cell);
 }
 
+
+// Nav and footer links scroll smoothly to their section (the waitlist button has its own handler above).
+document.querySelectorAll('a[href^="#"]:not(.pill-link)').forEach((a) => {
+  a.addEventListener("click", (ev) => {
+    const t = document.getElementById(a.getAttribute("href").slice(1));
+    if (!t) return;
+    ev.preventDefault();
+    t.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+    history.replaceState(null, "", a.getAttribute("href"));
+  });
+});
+// Highlight the nav link for the section on screen.
+if ("IntersectionObserver" in window) {
+  const links = [...document.querySelectorAll(".nav-links a")];
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) links.forEach((l) => l.classList.toggle("current", l.getAttribute("href") === "#" + e.target.id));
+    });
+  }, { rootMargin: "-40% 0px -55% 0px" });
+  links.forEach((l) => { const t = document.getElementById(l.getAttribute("href").slice(1)); if (t) io.observe(t); });
+}
