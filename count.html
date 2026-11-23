@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The number | Tally</title>
+  <meta name="description" content="Tally puts a number in the middle of your screen and makes it louder as you scroll.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#17161a">
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap bar">
+      <a class="logo" href="index.html" aria-label="Tally home"><img src="images/logo.svg" alt="Tally" width="140" height="39"></a>
+      <nav class="nav-links" aria-label="Pages"><a href="count.html" aria-current="page">The number</a><a href="veil.html">The veil</a><a href="widgets.html">Widgets</a><a href="settings.html">Settings</a></nav>
+      <a class="pill-link" href="#join">Join the waitlist</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="wrap page-hero">
+      <h1>One number, in the middle of the screen.</h1>
+      <p class="lede">Tally counts swipes in the apps you pick and shows the total over them. The number is semi-transparent, and touches go through to the app underneath.</p>
+    </section>
+<section class="wrap sec stripsec"><div class="txt"><h2><span class="ti" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/></svg></span>It gets louder.</h2><p>The number starts small and white. As the count climbs it grows, turns amber, then red. Every 50th swipe it sends out a ring.</p><p>The exact steps and timing may change before release.</p></div><div class="strip"><figure><img src="images/count-12.webp" alt="Overlay at 12 swipes: a small white 12 over a feed" width="412" height="860" loading="lazy"><figcaption>12 swipes: small and white</figcaption></figure><figure><img src="images/count-48.webp" alt="Overlay at 48 swipes: a larger amber 48" width="412" height="860" loading="lazy"><figcaption>48 swipes: bigger and amber</figcaption></figure><figure><img src="images/count-120.webp" alt="Overlay at 120 swipes: a large red 120" width="412" height="860" loading="lazy"><figcaption>120 swipes: big and red</figcaption></figure></div></section>
+<section class="wrap sec split"><div class="txt"><h2><span class="ti" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="17" height="7" rx="2"/></svg></span>Swipes, time, or both.</h2><p>The default shows swipes big with the minutes small under them. You can switch to swipes only, or to time only.</p><p>Time counts only while one of your apps is in front. After a short break the count starts again.</p></div><div class="shots"><figure><img src="images/modes.webp" alt="The three overlay styles in Settings: Both, Swipes and Time" width="412" height="168" loading="lazy"></figure></div></section>
+<section class="wrap sec split flip"><div class="txt"><h2><span class="ti" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v9h-6v-6H9v6H3z"/></svg></span>The home screen.</h2><p>Open Tally to see your current count and time, a switch to turn it on or off, and the apps it watches.</p><p>Once you pass 10 minutes, it adds one plain line about what that time could have been, such as a short walk.</p><p>There are no streaks, no best day and no score. It only shows where you are now.</p></div><div class="shots"><figure><img src="images/home.webp" alt="Tally home screen: the number 86, 14 min, a Tally is on card and four watched apps" width="412" height="915" loading="lazy"></figure></div></section>
+    <section class="wrap cta" aria-labelledby="cta-h">
+      <h2 id="cta-h">Hear when Tally is ready.</h2>
+      <p class="lede">One email when it is available. Nothing else.</p>
+      <form class="wishlist-form" id="join" novalidate>
+        <div class="pill-field">
+          <label class="sr-only" for="email-1">Email</label>
+          <input id="email-1" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+          <button type="submit">Join the waitlist</button>
+        </div>
+        <label class="consent"><input type="checkbox" name="consent"><span>Email me when Tally is available. I can unsubscribe any time.</span></label>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <p class="status" role="status" aria-live="polite"></p>
+      </form>
+      <p class="small">Your address goes into a Google Sheet kept by Jergusino and is used only to tell you when Tally is ready. <a href="index.html#privacy">More on your email</a>.</p>
+    </section>
+    <footer class="wrap foot">
+      <nav class="foot-links" aria-label="Pages"><a href="index.html">Home</a> <a href="count.html">The number</a> <a href="veil.html">The veil</a> <a href="widgets.html">Widgets</a> <a href="settings.html">Settings</a></nav>
+      <p>Made by Jergusino. <a href="mailto:mail@jergusino.com">mail@jergusino.com</a></p>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
