@@ -79,8 +79,8 @@ function render() {
 }
 
 // One swipe is one scroll event: it counts (when Tally is on) and the feed moves to the next video.
-function swipe(dir = 1) {
-  if (state.busy) return;
+function swipe(dir = 1, auto = false) {
+  if (state.busy && !auto) return;
   state.busy = true;
   setTimeout(() => { state.busy = false; }, reduceMotion ? 0 : 260);
 
@@ -137,29 +137,27 @@ $("reset").addEventListener("click", () => {
   render();
 });
 
-// Plays 10 swipes in a row, one every 420ms, so visitors see how the count and veil work.
+// Plays 10 swipes in about 2 seconds, starting right away, so visitors see how the count and veil work.
+// Ease-out: swipe k lands at AUTO_MS * (1 - sqrt(1 - k/10)), so the first come fast and the last slow down.
 // Runs once, when the phone first comes on screen. Skipped for reduced motion (the Swipe button still works).
-// A step that lands while the previous swipe is still animating waits and retries, so none are lost.
+const AUTO_SWIPES = 10;
+const AUTO_MS = 2000;
 let autoPlayed = false;
 function playTenSwipes() {
   if (autoPlayed || reduceMotion) return;
   autoPlayed = true;
-  let left = 10;
-  const step = () => {
-    if (state.busy) { setTimeout(step, 60); return; }
-    swipe(1);
-    left -= 1;
-    if (left > 0) setTimeout(step, 420);
-  };
-  step();
+  for (let k = 1; k <= AUTO_SWIPES; k++) {
+    const at = AUTO_MS * (1 - Math.sqrt(1 - k / AUTO_SWIPES));
+    setTimeout(() => swipe(1, true), at);
+  }
 }
 if ("IntersectionObserver" in window) {
   const demoIo = new IntersectionObserver((entries, obs) => {
-    if (entries[0].isIntersecting) { obs.disconnect(); setTimeout(playTenSwipes, 900); }
+    if (entries[0].isIntersecting) { obs.disconnect(); playTenSwipes(); }
   }, { threshold: 0.6 });
   demoIo.observe($("screen"));
 } else {
-  setTimeout(playTenSwipes, 900);
+  playTenSwipes();
 }
 
 // Every eye switch (under the phone and on the widgets) is the same master switch.
