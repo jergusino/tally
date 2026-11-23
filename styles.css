@@ -119,12 +119,9 @@ h1 {
 .feed { position: absolute; inset: 0; }
 .slide {
   position: absolute; inset: 0; overflow: hidden;
-  background: hsl(240 6% calc(10% + var(--h) * .02%));
+  background: hsl(var(--h) 20% 11%);
   transition: transform .34s cubic-bezier(.2, .7, .2, 1);
 }
-.slide::before, .slide::after { content: ""; position: absolute; border-radius: 50%; }
-.slide::before { width: 70%; aspect-ratio: 1; left: var(--x1); top: 14%; background: hsl(240 6% calc(21% + var(--h) * .01%)); }
-.slide::after { width: 46%; aspect-ratio: 1; right: var(--x2); top: 44%; background: hsl(240 6% calc(27% + var(--h) * .01%)); }
 .slide.from-below { transform: translateY(100%); }
 .slide.from-above { transform: translateY(-100%); }
 .slide .cap { position: absolute; left: 5cqw; right: 22cqw; bottom: 9cqw; z-index: 1; }
