@@ -44,8 +44,13 @@ button { cursor: pointer; }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .small { font-size: .9rem; color: var(--muted); }
 
-/* header: stays at the top while scrolling, flat background so content slides under it cleanly */
-.top { position: sticky; top: 0; z-index: 50; background: var(--bg); border-bottom: 1px solid var(--line); }
+/* header: stays at the top while scrolling; semi-transparent with a background blur so content shows through softly */
+.top {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(23, 22, 26, .72); /* --bg at 72% */
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
 .top .bar { display: flex; align-items: center; justify-content: space-between; padding-top: 22px; padding-bottom: 22px; }
 .logo { display: block; line-height: 0; }
 .logo img { height: 34px; width: auto; display: block; }
