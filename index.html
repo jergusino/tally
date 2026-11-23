@@ -8,8 +8,9 @@
   <link rel="canonical" href="https://tally.jergusino.com/">
   <title>Tally: a number for every swipe. Join the waitlist</title>
   <meta name="description" content="Tally is an Android app that counts your swipes and minutes, shows the total in the middle of your screen and slowly dims the screen as the count climbs. Join the waitlist.">
-  <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0a0a" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="images/favicon.png" type="image/png">
   <link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
@@ -17,16 +18,14 @@
 <body>
   <header class="top">
     <div class="wrap bar">
-      <a class="logo" href="#top" aria-label="Tally, back to top"><img src="images/logo-dark.svg" alt="Tally" width="140" height="39"></a>
+      <a class="logo" href="#top" aria-label="Tally, back to top"><picture><source media="(prefers-color-scheme: dark)" srcset="images/logo.svg"><img src="images/logo-dark.svg" alt="Tally" width="140" height="39"></picture></a>
       <nav class="nav-links" aria-label="Sections"><a href="#number">The number</a><a href="#veil">The veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
       <a class="pill-link" href="#join">Join the waitlist</a>
     </div>
   </header>
 
   <main id="top">
-    <div class="wrap showcase">
-
-      <section class="intro">
+    <section class="wrap intro" id="hero">
         <h1>See how much you scroll.</h1>
         <p class="lede">Tally is an Android app. It counts your swipes and minutes in the apps you pick, puts the total in the middle of your screen, and slowly dims the screen as the count climbs.</p>
 
@@ -43,10 +42,12 @@
           <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           <p class="status" role="status" aria-live="polite"></p>
         </form>
-        <p class="small">Android only for now. Try the demo on the right.</p>
+        <p class="small">Android only for now. Try the demo below.</p>
         <noscript><p class="small">The waitlist form needs JavaScript. Or email <a href="mailto:mail@jergusino.com">mail@jergusino.com</a>.</p></noscript>
-      </section>
+    </section>
 
+    <div class="wrap">
+      <div class="stage">
       <aside class="demo" aria-label="Tally demo">
         <div class="phone">
           <div class="screen" id="screen" tabindex="0" role="group" aria-label="Demo feed. Drag up, press Space, or use the Swipe button to swipe.">
@@ -116,33 +117,37 @@
           <p class="clock-label" aria-hidden="true"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span></p>
         </section>
       </div>
+      </div>
     </div>
 
-
-    <section class="wrap gal flip" id="number" aria-labelledby="number-h">
+    <section class="wrap gal" id="number" aria-labelledby="number-h">
+      <div class="gal-head"><h2 id="number-h">One number, louder with every swipe.</h2></div>
       <div class="gal-txt">
-        <h2 id="number-h">One number, louder with every swipe.</h2>
         <p>Tally shows the total over the apps you pick. It starts small and white, grows, turns amber, then red, and sends out a ring every 50th swipe. It is semi-transparent, and touches go through to the app underneath.</p>
         <p>The default shows swipes with the minutes small under them. You can switch to swipes only, or to time only. Time counts only while one of your apps is in front, and after a short break the count starts again. The exact steps and timing may change before release.</p>
       </div>
-      <img src="images/number.webp" alt="Three phones showing the Tally number at 12, 48 and 120 swipes, growing and changing from white to amber to red" width="2275" height="1443" loading="lazy">
-      <p class="cap">12, 48 and 120 swipes.</p>
+      <figure class="gal-media">
+        <img src="images/number.webp" alt="Three phones showing the Tally number at 12, 48 and 120 swipes, growing and changing from white to amber to red" width="2275" height="1443" loading="lazy">
+        <figcaption class="cap">12, 48 and 120 swipes.</figcaption>
+      </figure>
     </section>
 
     <section class="wrap gal" id="veil" aria-labelledby="veil-h">
+      <div class="gal-head"><h2 id="veil-h">The veil closes in. Nothing is blocked.</h2></div>
       <div class="gal-txt">
-        <h2 id="veil-h">The veil closes in. Nothing is blocked.</h2>
         <p>Edges go dark first. At the end only a small clear patch is left, about a quarter of the screen across. The veil is black, and the number is drawn above it, so the count stays easy to read.</p>
         <p>It does not block touches. They pass through to the app underneath, so there is no trap and no button to find. It draws only over the apps you picked, and it never touches system screens or calls.</p>
       </div>
-      <img src="images/veil.webp" alt="Three phones showing the veil at 20, 60 and 150 swipes, closing in from the edges" width="2276" height="1443" loading="lazy">
-      <p class="cap">20, 60 and 150 swipes.</p>
+      <figure class="gal-media">
+        <img src="images/veil.webp" alt="Three phones showing the veil at 20, 60 and 150 swipes, closing in from the edges" width="2276" height="1443" loading="lazy">
+        <figcaption class="cap">20, 60 and 150 swipes.</figcaption>
+      </figure>
     </section>
 
-    <section class="band" id="widgets" aria-labelledby="widgets-h">
-      <div class="wrap widgets flip">
+    <section class="wrap widgets" id="widgets" aria-labelledby="widgets-h">
+      <div class="widgets-grid">
+        <h2 id="widgets-h">On your home screen too.</h2>
         <div class="widgets-copy">
-          <h2 id="widgets-h">On your home screen too.</h2>
           <p>Two widgets. The eye widget shows today's swipes and an eye to switch Tally on or off. The time widget shows today's minutes with one plain line about what that time could be.</p>
           <p>Tap the eye to pause counting. Tap anywhere else to open Tally. When it is off, the number dims and the label says paused.</p>
           <p class="small">These widgets are live. Use the eye, or swipe in the demo. The daily total resets at midnight on your phone's clock, with no history. Widgets are part of the prototype and may change.</p>
@@ -178,13 +183,15 @@
     </section>
 
     <section class="wrap gal" id="settings" aria-labelledby="settings-h">
+      <div class="gal-head"><h2 id="settings-h">Yours to set up.</h2></div>
       <div class="gal-txt">
-        <h2 id="settings-h">Yours to set up.</h2>
         <p>Tally finds common social apps and turns them on for you. Turn on any other installed app, and turn off any you do not want counted. Browsers are off by default. If you turn one on, the whole browser counts, because Tally does not look at which site you are on.</p>
         <p>To count swipes in other apps, Tally uses Android's accessibility service, and it draws the number over them. Android asks you to turn this on yourself. Tally reads no text, messages or posts. It counts scroll events and the time an app is in front.</p>
       </div>
-      <img src="images/apps.webp" alt="Tally home screen and two Settings screens: overlay style, intensity, veil speed, obstruction max, grace swipes and watched apps" width="2275" height="1532" loading="lazy">
-      <p class="cap">Home, and Settings. Drawn from the app design, not photos of a phone.</p>
+      <figure class="gal-media">
+        <img src="images/apps.webp" alt="Tally home screen and two Settings screens: overlay style, intensity, veil speed, obstruction max, grace swipes and watched apps" width="2275" height="1532" loading="lazy">
+        <figcaption class="cap">Home, and Settings. Drawn from the app design, not photos of a phone.</figcaption>
+      </figure>
     </section>
 
     <section class="wrap never" aria-labelledby="never-h">
@@ -223,8 +230,12 @@
     </section>
 
     <footer class="wrap foot">
-      <nav class="foot-links" aria-label="Sections"><a href="#number">The number</a> <a href="#veil">The veil</a> <a href="#widgets">Widgets</a> <a href="#settings">Settings</a></nav>
-      <p>Made by Jergusino. <a href="mailto:mail@jergusino.com">mail@jergusino.com</a></p>
+      <div class="foot-cols">
+        <div class="foot-brand"><picture><source media="(prefers-color-scheme: dark)" srcset="images/logo.svg"><img src="images/logo-dark.svg" alt="Tally" width="140" height="39"></picture></div>
+        <nav aria-label="Product"><h3>Product</h3><a href="#number">The number</a><a href="#veil">The veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
+        <nav aria-label="Legal"><h3>Info</h3><a href="#privacy">Your email</a><a href="mailto:mail@jergusino.com">Contact</a></nav>
+      </div>
+      <p class="foot-line">Made by Jergusino. Tally for Android is not released yet.</p>
     </footer>
   </main>
 
