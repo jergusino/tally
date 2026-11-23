@@ -274,10 +274,37 @@ h1 {
   .pill-field button { flex: 1 1 100%; }
   .logo img { height: 30px; }
 }
+/* motion: press and hover feedback, hero entrance, scroll reveal (script.js adds .js and .shown) */
+:root { --ease: cubic-bezier(.2, .7, .2, 1); }
+a { transition: text-decoration-color .25s ease; }
+.btn, .pill-link, .pill-field button, .seg button, .step button, .nav-links a {
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease, transform .2s var(--ease);
+}
+.btn:active, .pill-link:active, .pill-field button:active, .seg button:active, .step button:active, .nav-links a:active { transform: scale(.96); }
+.pill-field { transition: border-color .25s ease, box-shadow .25s ease; }
+.clock span { transition: background-color .4s ease; }
+.slider input::-webkit-slider-thumb { transition: transform .2s var(--ease); }
+.slider input::-webkit-slider-thumb:hover { transform: scale(1.12); }
+.slider input::-moz-range-thumb { transition: transform .2s var(--ease); }
+.slider input::-moz-range-thumb:hover { transform: scale(1.12); }
+
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.intro > * { animation: rise .8s var(--ease) both; }
+.intro > :nth-child(2) { animation-delay: .08s; }
+.intro > :nth-child(3) { animation-delay: .16s; }
+.intro > :nth-child(4) { animation-delay: .24s; }
+.demo { animation: rise .9s .12s var(--ease) both; }
+
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.js .reveal.shown { opacity: 1; transform: none; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .slide, .veil, .overlay, .eye, .eye::before, .num { transition: none; }
   .hint, .rings.pulse::before, .rings.pulse::after, .pill-field.flash { animation: none; }
+  .intro > *, .demo { animation: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .btn, .pill-link, .pill-field button, .seg button, .step button, .nav-links a, .btn:active, .pill-link:active, .pill-field button:active, .seg button:active, .step button:active, .nav-links a:active { transition: none; transform: none; }
 }
 
 

@@ -109,3 +109,24 @@ if ("IntersectionObserver" in window) {
   }, { rootMargin: "-40% 0px -55% 0px" });
   links.forEach((l) => { const t = document.getElementById(l.getAttribute("href").slice(1)); if (t) io.observe(t); });
 }
+
+// Scroll reveal: sections fade up once, the first time they come into view. Off for reduced motion.
+if (!reduceMotion) {
+  document.documentElement.classList.add("js");
+  // A section counts as seen once its top is within the top 92% of the window. This also
+  // catches sections a long jump (nav link, end key) skipped past, which an observer would miss.
+  let pending = [...document.querySelectorAll(".feat, .gal, .widgets, .never, .cta, .privacy")];
+  pending.forEach((el) => el.classList.add("reveal"));
+  let queued = false;
+  const checkReveal = () => {
+    queued = false;
+    pending = pending.filter((el) => {
+      if (el.getBoundingClientRect().top < innerHeight * 0.92) { el.classList.add("shown"); return false; }
+      return true;
+    });
+  };
+  const queueCheck = () => { if (!queued) { queued = true; requestAnimationFrame(checkReveal); } };
+  window.addEventListener("scroll", queueCheck, { passive: true });
+  window.addEventListener("resize", queueCheck);
+  checkReveal();
+}
