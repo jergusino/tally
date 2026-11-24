@@ -76,6 +76,8 @@ button { cursor: pointer; }
 .pill-link { padding: 8px 16px; border-radius: 999px; font-size: .9375rem; font-weight: 500; text-decoration: none; background: var(--ink); color: var(--bg); }
 .pill-link:hover { background: var(--btn-hover); }
 
+.menu-btn, .menu { display: none; }
+
 /* hero: one big plain headline */
 .intro { padding-top: clamp(64px, 14vh, 160px); padding-bottom: clamp(48px, 8vh, 88px); }
 h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -.045em; line-height: 1.03; max-width: 11em; }
@@ -293,10 +295,19 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 }
 
 @media (max-width: 900px) {
-  :root { --bar-h: 104px; }
-  .top .bar { flex-wrap: wrap; height: auto; padding-top: 12px; padding-bottom: 8px; gap: 4px 12px; }
-  .nav-links { order: 3; width: 100%; margin: 0 -12px; overflow-x: auto; }
+  :root { --bar-h: 64px; }
   .logo { margin-right: auto; }
+  .nav-links, .top .bar > .pill-link { display: none; }
+  .menu-btn { display: grid; place-content: center; gap: 6px; width: 44px; height: 44px; margin-right: -10px; padding: 0; border: 0; border-radius: 50%; background: transparent; }
+  .menu-btn span { display: block; width: 20px; height: 2px; border-radius: 2px; background: var(--ink); transition: transform .3s var(--ease); }
+  .menu-btn[aria-expanded="true"] span:first-child { transform: translateY(4px) rotate(45deg); }
+  .menu-btn[aria-expanded="true"] span:last-child { transform: translateY(-4px) rotate(-45deg); }
+  .menu-open .top { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .menu-open body { overflow: hidden; }
+  .menu { position: fixed; inset: var(--bar-h) 0 0; z-index: 49; display: flex; flex-direction: column; padding: 8px clamp(20px, 4vw, 40px) 32px; background: var(--bg); overflow-y: auto; }
+  .menu[hidden] { display: none; }
+  .menu a:not(.pill-link) { padding: 18px 0; border-bottom: 1px solid var(--line); font-size: 1.75rem; letter-spacing: -.03em; text-decoration: none; }
+  .menu-cta { margin-top: auto; padding: 14px 20px; text-align: center; font-size: 1.0625rem; }
   .stage { grid-template-columns: minmax(0, 1fr); }
   .demo { position: static; padding-bottom: 8px; }
   .features { padding: 8px clamp(20px, 5vw, 40px) 24px; }
@@ -314,6 +325,4 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
   .pill-field input[type="email"] { flex: 1 1 100%; }
   .pill-field button { flex: 1 1 100%; }
   .never ul { grid-template-columns: minmax(0, 1fr); }
-  .nav-links { justify-content: space-between; margin: 0 -8px; }
-  .nav-links a { padding: 8px 9px; font-size: .875rem; }
 }
