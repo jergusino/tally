@@ -180,7 +180,7 @@ if ("IntersectionObserver" in window) {
     const li = document.createElement("li");
     li.className = "bar-row";
     li.title = `${n}: -${v}% swipes`;
-    li.innerHTML = `<div class="bar-top"><span>${n}</span><span>-${v}%</span></div><div class="bar-track"><div class="bar-fill" data-w="${v}"></div></div>`;
+    li.innerHTML = `<div class="bar-top"><span>${n}</span><span>-${v}%</span></div><div class="bar-track"><div class="bar-fill${n === "Short video" ? " hl" : ""}" data-w="${v}"></div></div>`;
     list.append(li);
   });
   const fills = [...list.querySelectorAll(".bar-fill")];
