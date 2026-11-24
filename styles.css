@@ -239,10 +239,13 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 }
 .screen {
   position: relative; width: 100%; height: 100%; overflow: hidden; container-type: inline-size;
-  background: var(--screen); color: var(--pink); touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab;
+  background: var(--screen); color: var(--pink); touch-action: auto; user-select: none; -webkit-user-select: none; cursor: grab;
   isolation: isolate;
 }
+.screen.engaged { touch-action: none; }
 .screen:active { cursor: grabbing; }
+.try { position: absolute; z-index: 6; left: 50%; top: 14cqw; transform: translateX(-50%); padding: 2.6cqw 5cqw; border: 0; border-radius: 999px; background: var(--ink); color: var(--bg); font-size: 4cqw; font-weight: 600; white-space: nowrap; }
+.try[hidden] { display: none; }
 .screen:focus-visible { outline: 2px solid var(--red); outline-offset: -4px; }
 .feed { position: absolute; inset: 0; }
 .slide {

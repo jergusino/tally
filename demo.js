@@ -98,6 +98,7 @@ function swipe(dir = 1) {
   }
 
   if (state.hinted) { state.hinted = false; hint.classList.add("gone"); }
+  keepEngaged();
 
   if (state.on) {
     state.swipes += 1;
@@ -114,10 +115,35 @@ function swipe(dir = 1) {
 
 feed.append(makeSlide(0));
 
-// Drag or touch the screen to swipe. Page scrolling stays normal everywhere outside the phone.
+// Drag or touch the screen to swipe. On touch phones the demo starts passive so the page can scroll past it.
+// "Try the demo" turns swiping on; it turns off again after 6 seconds with no swipe, or on a tap outside the phone.
+// Desktop (fine pointer) is always engaged.
 const screen = $("screen");
+const tryBtn = $("try");
+const coarse = window.matchMedia("(pointer: coarse)").matches;
+const IDLE_MS = 6000;
+let engaged = !coarse;
+let idleTimer = null;
 let startY = null;
-screen.addEventListener("pointerdown", (ev) => { startY = ev.clientY; });
+
+function setEngaged(on) {
+  engaged = on;
+  clearTimeout(idleTimer);
+  screen.classList.toggle("engaged", on);
+  tryBtn.hidden = !coarse || on;
+  if (on && coarse) idleTimer = setTimeout(() => setEngaged(false), IDLE_MS);
+}
+function keepEngaged() {
+  if (!engaged || !coarse) return;
+  clearTimeout(idleTimer);
+  idleTimer = setTimeout(() => setEngaged(false), IDLE_MS);
+}
+setEngaged(engaged);
+tryBtn.addEventListener("click", () => { setEngaged(true); screen.focus({ preventScroll: true }); });
+document.addEventListener("pointerdown", (ev) => {
+  if (engaged && coarse && !screen.contains(ev.target)) setEngaged(false);
+});
+screen.addEventListener("pointerdown", (ev) => { if (engaged) startY = ev.clientY; });
 screen.addEventListener("pointerup", (ev) => {
   if (startY === null) return;
   const dy = ev.clientY - startY;
