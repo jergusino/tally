@@ -99,6 +99,20 @@ document.querySelectorAll('a[href^="#"]:not(.pill-link)').forEach((a) => {
     history.replaceState(null, "", a.getAttribute("href"));
   });
 });
+// Mobile menu: full-screen link list under the bar, like openai.com.
+const menuBtn = document.getElementById("menu-btn");
+const menu = document.getElementById("menu");
+function setMenu(open) {
+  menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  menu.hidden = !open;
+  document.documentElement.classList.toggle("menu-open", open);
+}
+menuBtn.addEventListener("click", () => setMenu(menu.hidden));
+menu.addEventListener("click", (ev) => { if (ev.target.closest("a")) setMenu(false); });
+document.addEventListener("keydown", (ev) => { if (ev.key === "Escape" && !menu.hidden) { setMenu(false); menuBtn.focus(); } });
+window.matchMedia("(min-width: 901px)").addEventListener("change", (m) => { if (m.matches) setMenu(false); });
+
 // Highlight the nav link for the section on screen.
 if ("IntersectionObserver" in window) {
   const links = [...document.querySelectorAll(".nav-links a")];

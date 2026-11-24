@@ -7,7 +7,6 @@ const CAPTIONS = [
   ["@nightloop", "one more video"], ["@dailyfeed", "wait for the end"], ["@loopcafe", "part 2 is better"],
   ["@softscroll", "you will not guess"], ["@latefeed", "just one more"], ["@endlessly", "this one loops"],
 ];
-const HUES = [212, 268, 330, 18, 160, 42, 290, 190];
 
 const state = { on: true, swipes: 0, today: 128, mode: "both", speed: 3, grace: 0, slide: 0, busy: false, hinted: true };
 
@@ -23,9 +22,6 @@ function makeSlide(i) {
   const el = document.createElement("div");
   el.className = "slide";
   const [who, text] = CAPTIONS[i % CAPTIONS.length];
-  el.style.setProperty("--h", HUES[i % HUES.length]);
-  el.style.setProperty("--x1", `${(i * 37) % 40 - 10}%`);
-  el.style.setProperty("--x2", `${(i * 23) % 30 - 8}%`);
   el.innerHTML = `<div class="cap"><b></b><span></span></div>`;
   el.querySelector("b").textContent = who;
   el.querySelector("span").textContent = text;
@@ -33,9 +29,9 @@ function makeSlide(i) {
 }
 
 function colorFor(n) {
-  if (n >= 80) return ["#ff312e", "rgba(255, 49, 46, .55)"];
-  if (n >= 30) return ["#ffb020", "rgba(255, 176, 32, .5)"];
-  return ["#fffffa", "rgba(255, 255, 250, .28)"];
+  if (n >= 80) return ["var(--n-red)", ""];
+  if (n >= 30) return ["var(--n-amber)", ""];
+  return ["var(--n-white)", ""];
 }
 
 // Largest activities that fit today's minutes. Nothing under 10 minutes. Rough round numbers.
@@ -56,7 +52,7 @@ function render() {
   overlay.classList.toggle("hidden", !shown);
   overlay.dataset.mode = state.mode;
   overlay.style.setProperty("--c", color);
-  overlay.dataset.tone = n >= 30 ? "hot" : "white"; // light-screen styling reads this
+  overlay.dataset.tone = n >= 30 ? "hot" : "white";
   overlay.style.setProperty("--glow", glow);
   overlay.style.setProperty("--nz", (31 + 14 * Math.min(n / 150, 1)).toFixed(2));
   numEl.textContent = n;
