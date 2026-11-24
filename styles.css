@@ -175,11 +175,6 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 .tip { position: absolute; z-index: 2; pointer-events: none; padding: 8px 12px; background: var(--ink); color: var(--bg); border-radius: 10px; font-size: .8125rem; line-height: 1.4; white-space: nowrap; transform: translate(-50%, -100%); }
 .tip b { font-weight: 600; }
 .tip[hidden] { display: none; }
-.tbl { margin-top: 12px; font-size: .875rem; color: var(--muted); }
-.tbl summary { cursor: pointer; }
-.tbl table { margin-top: 10px; width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
-.tbl th, .tbl td { padding: 6px 8px; text-align: right; border-top: 1px solid var(--line); }
-.tbl th:first-child, .tbl td:first-child { text-align: left; }
 .bar-list { list-style: none; padding: 0; margin: 20px 0 16px; display: grid; gap: 18px; }
 .bar-row { display: grid; gap: 6px; }
 .bar-top { display: flex; justify-content: space-between; font-size: .9375rem; }

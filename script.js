@@ -130,20 +130,17 @@ if ("IntersectionObserver" in window) {
   if (!plot) return;
   const base = [408, 415, 411, 419, 412, 416, 409, 413];
   const withT = [410, 372, 331, 298, 271, 252, 238, 229];
-  const H = 300, L = 40, R = 16, T = 16, B = 32, MAX = 450;
+  const H = 300, L = 40, R = 16, T = 16, B = 32, MIN = 200, MAX = 430; // axis starts at 200, not 0: zoomed in on the lines
   let W = 640;
   const x = (i) => L + (i * (W - L - R)) / 7;
-  const y = (v) => T + (1 - v / MAX) * (H - T - B);
+  const y = (v) => T + (1 - (v - MIN) / (MAX - MIN)) * (H - T - B);
   const path = (a) => a.map((v, i) => (i ? "L" : "M") + x(i).toFixed(1) + " " + y(v).toFixed(1)).join(" ");
-
-  const tb = $("line-table").tBodies[0];
-  base.forEach((b, i) => { const tr = tb.insertRow(); [i + 1, b, withT[i]].forEach((v) => (tr.insertCell().textContent = v)); });
 
   let hov, tip, el;
   const draw = () => {
     W = Math.max(280, Math.round(plot.clientWidth || 640)); // 1 svg unit = 1 css px, so text stays 12px
     let svg = "";
-    for (const g of [0, 150, 300, 450]) svg += `<line class="gl" x1="${L}" x2="${W - R}" y1="${y(g)}" y2="${y(g)}"/><text x="${L - 8}" y="${y(g) + 4}" text-anchor="end">${g}</text>`;
+    for (const g of [200, 250, 300, 350, 400]) svg += `<line class="gl" x1="${L}" x2="${W - R}" y1="${y(g)}" y2="${y(g)}"/><text x="${L - 8}" y="${y(g) + 4}" text-anchor="end">${g}</text>`;
     for (let i = 0; i < 8; i++) svg += `<text x="${x(i)}" y="${H - 8}" text-anchor="middle">${i + 1}</text>`;
     svg += `<path class="ln-base" d="${path(base)}"/><path class="ln-with" d="${path(withT)}"/>`;
     svg += `<text class="lab" x="${x(7)}" y="${y(base[7]) - 10}" text-anchor="end">Before Tally</text><text class="lab" x="${x(7)}" y="${y(withT[7]) + 22}" text-anchor="end" style="fill:var(--c-with)">With Tally</text>`;
