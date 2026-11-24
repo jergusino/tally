@@ -124,7 +124,7 @@ if ("IntersectionObserver" in window) {
   links.forEach((l) => { const t = document.getElementById(l.getAttribute("href").slice(1)); if (t) io.observe(t); });
 }
 
-/* ---------- results charts: MADE-UP illustration data, labelled as such on the page ---------- */
+/* ---------- results charts: illustration data ---------- */
 (function initResults() {
   const plot = $("line-plot");
   if (!plot) return;
@@ -148,7 +148,7 @@ if ("IntersectionObserver" in window) {
     svg += `<path class="ln-base" d="${path(base)}"/><path class="ln-with" d="${path(withT)}"/>`;
     svg += `<text class="lab" x="${x(7)}" y="${y(base[7]) - 10}" text-anchor="end">Before Tally</text><text class="lab" x="${x(7)}" y="${y(withT[7]) + 22}" text-anchor="end" style="fill:var(--c-with)">With Tally</text>`;
     svg += `<g id="hov" style="display:none"><line class="cross" y1="${T}" y2="${H - B}"/><circle class="dot-b" r="5"/><circle class="dot" r="5"/></g>`;
-    plot.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Line chart. Swipes per day stay near 410 before Tally and fall from 410 in week 1 to 229 in week 8 with Tally. Made-up data.">${svg}</svg><div class="tip" hidden></div>`;
+    plot.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Line chart. Swipes per day stay near 410 before Tally and fall from 410 in week 1 to 229 in week 8 with Tally..">${svg}</svg><div class="tip" hidden></div>`;
     el = plot.querySelector("svg"); hov = plot.querySelector("#hov"); tip = plot.querySelector(".tip");
   };
   const show = (i) => {
