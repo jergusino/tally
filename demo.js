@@ -22,7 +22,8 @@ function makeSlide(i) {
   const el = document.createElement("div");
   el.className = "slide";
   const [who, text] = CAPTIONS[i % CAPTIONS.length];
-  el.innerHTML = `<div class="cap"><b></b><span></span></div>`;
+  // The rail (like, comment, share) lives inside each slide so it scrolls with the caption.
+  el.innerHTML = `<div class="cap"><b></b><span></span></div><div class="rail" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.2 4.2 0 0 1 12 7.4 4.2 4.2 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20.5 12a8.3 8.3 0 0 1-12.2 7.3L3.5 20.5l1.2-4.4A8.3 8.3 0 1 1 20.5 12z"/></svg><svg viewBox="0 0 24 24"><path d="M21.5 3 10.5 14M21.5 3l-6.8 18-4.2-7.5L3 9.3z"/></svg></div>`;
   el.querySelector("b").textContent = who;
   el.querySelector("span").textContent = text;
   return el;
