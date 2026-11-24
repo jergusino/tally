@@ -116,10 +116,12 @@ window.matchMedia("(min-width: 901px)").addEventListener("change", (m) => { if (
 // Highlight the nav link for the section on screen.
 if ("IntersectionObserver" in window) {
   const links = [...document.querySelectorAll(".nav-links a")];
+  // Remember which sections are in the reading band; when none is, clear the highlight (e.g. on the hero).
+  const inBand = new Set();
   const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) links.forEach((l) => l.classList.toggle("current", l.getAttribute("href") === "#" + e.target.id));
-    });
+    entries.forEach((e) => (e.isIntersecting ? inBand.add(e.target.id) : inBand.delete(e.target.id)));
+    const cur = inBand.size ? [...inBand][0] : null;
+    links.forEach((l) => l.classList.toggle("current", cur !== null && l.getAttribute("href") === "#" + cur));
   }, { rootMargin: "-40% 0px -55% 0px" });
   links.forEach((l) => { const t = document.getElementById(l.getAttribute("href").slice(1)); if (t) io.observe(t); });
 }
