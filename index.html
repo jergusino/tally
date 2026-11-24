@@ -14,18 +14,18 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="images/favicon.png" type="image/png">
   <link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=5">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
   <header class="top">
     <div class="wrap bar">
       <a class="logo" href="#top" aria-label="Tally, back to top"><picture><source media="(prefers-color-scheme: dark)" srcset="images/logo-mono-light.svg"><img src="images/logo-mono-dark.svg" alt="Tally" width="140" height="39"></picture></a>
-      <nav class="nav-links" aria-label="Sections"><a href="#results">Results</a><a href="#demo">Demo</a><a href="#number">Number &amp; veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
+      <nav class="nav-links" aria-label="Sections"><a href="#results">Results</a><a href="#demo">Demo</a><a href="#on-apps">On your apps</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
       <a class="pill-link" href="#join">Join the waitlist</a>
       <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span></span><span></span></button>
     </div>
     <nav class="menu" id="menu" aria-label="Menu" hidden>
-      <a href="#results">Results</a><a href="#demo">Demo</a><a href="#number">Number &amp; veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a>
+      <a href="#results">Results</a><a href="#demo">Demo</a><a href="#on-apps">On your apps</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a>
       <a class="pill-link menu-cta" href="#join">Join the waitlist</a>
     </nav>
   </header>
@@ -124,23 +124,35 @@
       </div>
     </div>
 
-    <section class="wrap gal" id="number" aria-labelledby="number-h">
-      <div class="gal-head"><h2 id="number-h">One number, and a veil that closes in.</h2></div>
+    <section class="wrap gal" id="on-apps" aria-labelledby="onapps-h">
+      <div class="gal-head"><h2 id="onapps-h">Tally sits on top of your apps.</h2></div>
       <div class="gal-txt">
-        <p>Tally shows the total over the apps you pick. It starts small and white, grows, turns amber, then red, and sends out a ring every 50th swipe. It is semi-transparent, and touches go through to the app underneath. The default shows swipes with the minutes small under them. You can switch to swipes only, or to time only.</p>
-        <p>With every swipe the edges go dark, until only a small clear patch is left, about a quarter of the screen across. The veil is black, and the number is drawn above it, so the count stays easy to read. Nothing is blocked: there is no trap and no button to find. It draws only over the apps you picked, and it never touches system screens or calls.</p>
-        <p>Time counts only while one of your apps is in front, and after a short break the count starts again. The exact steps and timing may change before release.</p>
+        <p>You do not open Tally to use it. Open the apps you scroll, like a video or photo app, and Tally is already there. It puts a number in the middle of the screen: how many times you have swiped. The more you swipe, the bigger the number gets.</p>
+        <p>The app underneath works like normal. You can still tap, scroll and type, and Tally never gets in the way. It only shows on the apps you pick. It stays off your phone calls and your phone's own screens.</p>
+        <p>As the number climbs, Tally also slowly darkens the edges of the screen. Nothing is blocked. It just gets harder to keep going.</p>
       </div>
-      <div class="gal-media gal-pair">
-        <figure>
-          <picture><source media="(prefers-color-scheme: dark)" srcset="images/number-for-dark.webp" type="image/webp"><img src="images/number.webp" alt="Three phones showing the Tally number at 12, 48 and 120 swipes, growing and changing from white to amber to red" width="2276" height="1558" loading="lazy"></picture>
-          <figcaption class="cap">The number at 12, 48 and 120 swipes.</figcaption>
-        </figure>
-        <figure>
-          <picture><source media="(prefers-color-scheme: dark)" srcset="images/veil-for-dark.webp" type="image/webp"><img src="images/veil.webp" alt="Three phones showing the veil at 20, 60 and 150 swipes, closing in from the edges" width="2276" height="1558" loading="lazy"></picture>
-          <figcaption class="cap">The veil at 20, 60 and 150 swipes.</figcaption>
-        </figure>
-      </div>
+      <figure class="gal-media">
+        <div class="ov-stage">
+          <div class="phone ov-phone" role="img" aria-label="A phone showing a video app. Tally draws a big number, 87, in the middle of the screen, on top of the video, and the edges of the screen are dark.">
+            <div class="screen static">
+              <div class="feed"><div class="slide">
+                <div class="mock-art"></div>
+                <div class="cap"><b>@nightloop</b><span>one more video</span></div>
+              </div></div>
+              <div class="veil" style="--hole: 38; --a: .88"></div>
+              <div class="rail"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.2 4.2 0 0 1 12 7.4 4.2 4.2 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg><svg viewBox="0 0 24 24"><path d="M20.5 12a8.3 8.3 0 0 1-12.2 7.3L3.5 20.5l1.2-4.4A8.3 8.3 0 1 1 20.5 12z"/></svg><svg viewBox="0 0 24 24"><path d="M21.5 3 10.5 14M21.5 3l-6.8 18-4.2-7.5L3 9.3z"/></svg></div>
+              <div class="overlay" style="--c: var(--n-amber); --nz: 38"><span class="num">87</span><span class="mins">14 min</span></div>
+              <div class="statusbar"><span>21:07</span><svg viewBox="0 0 26 12"><rect x="0.5" y="0.5" width="22" height="11" rx="3" fill="none" stroke="currentColor"/><rect x="2.5" y="2.5" width="14" height="7" rx="1.5"/><rect x="23.5" y="4" width="1.6" height="4" rx="0.6"/></svg></div>
+            </div>
+          </div>
+          <ul class="ov-notes">
+            <li><b>The number</b> counts your swipes.</li>
+            <li><b>The dark edges</b> close in as you scroll.</li>
+            <li><b>The video</b> is the app underneath.</li>
+          </ul>
+        </div>
+        <figcaption class="cap">An example. The app is a made-up video app.</figcaption>
+      </figure>
     </section>
 
     <section class="wrap widgets" id="widgets" aria-labelledby="widgets-h">
@@ -235,14 +247,14 @@
     <footer class="wrap foot">
       <div class="foot-cols">
         <div class="foot-brand"><picture><source media="(prefers-color-scheme: dark)" srcset="images/logo-mono-light.svg"><img src="images/logo-mono-dark.svg" alt="Tally" width="140" height="39"></picture></div>
-        <nav aria-label="Product"><h3>Product</h3><a href="#results">Results</a><a href="#demo">Demo</a><a href="#number">Number &amp; veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
+        <nav aria-label="Product"><h3>Product</h3><a href="#results">Results</a><a href="#demo">Demo</a><a href="#on-apps">On your apps</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
         <nav aria-label="Legal"><h3>Info</h3><a href="#privacy">Your email</a><a href="mailto:mail@jergusino.com">Contact</a></nav>
       </div>
       <p class="foot-line">Made by Jergusino. Tally for Android is not released yet.</p>
     </footer>
   </main>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=7"></script>
   <script src="demo.js?v=3"></script>
 </body>
 </html>
