@@ -8,7 +8,7 @@ Live at https://jergusino.github.io/tally/ (GitHub Pages, branch `main`, folder 
 
 - `index.html`, `styles.css`, `script.js` (forms, nav), `demo.js` (the demo phone): one page with sections #number, #veil, #widgets and #settings. The nav scrolls smoothly to them. No build step.
 - `fonts/inter-latin-var.woff2`: Inter (variable), self-hosted, Latin only.
-- `images/number.webp`, `veil.webp`, `apps.webp`: graphics of the app screens, drawn from the UI (not photos of a phone). `apps.webp` shows the current Home and Settings.
+- `images/number.webp`, `veil.webp`, `apps.webp`: graphics of the app screens, drawn from the UI (not photos of a phone). `apps.webp` shows the current Home and Settings. Each has a `-for-dark.webp` twin (light screens, silver frames) that the page swaps in under `prefers-color-scheme: dark`, so the phones stand out on either page colour.
 - `images/logo.svg`: eye and wordmark from the Tally logo. `images/favicon.png`: tab icon.
 
 ## What is on the page

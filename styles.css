@@ -131,7 +131,7 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 .gal-media { grid-column: 2; grid-row: 1 / span 2; margin: 0; max-width: 480px; width: 100%; justify-self: end; }
 #veil .gal-media { justify-self: start; }
 #veil .gal-media { grid-column: 1; }
-.gal-media img { display: block; width: 100%; height: auto; padding: clamp(16px, 2.5vw, 32px); background: var(--surface); border-radius: 24px; }
+.gal-media img { display: block; width: 100%; height: auto; }
 .cap { margin-top: 12px; font-size: .875rem; color: var(--muted); }
 .widgets-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: auto 1fr; column-gap: clamp(32px, 6vw, 96px); row-gap: 20px; align-items: start; }
 .widgets-copy { grid-column: 1; grid-row: 2; }
