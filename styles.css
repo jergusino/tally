@@ -328,7 +328,7 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
   .phone { --pw: min(280px, 74vw); }
   .gal, .widgets-grid, .privacy { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
   .gal-head, .gal-txt, .gal-media, #veil .gal-head, #veil .gal-txt, #veil .gal-media, .widgets-copy, .widgets h2, .homescreen, .privacy p, .privacy h2 { grid-column: 1; grid-row: auto; }
-  .gal-media, .homescreen { margin-top: 16px; max-width: 420px; justify-self: start; }
+  .gal-media { margin-top: 16px; max-width: 420px; justify-self: start; }
   .never ul { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
   .foot-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .foot-brand { grid-column: 1 / -1; }
