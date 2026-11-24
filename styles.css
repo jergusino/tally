@@ -134,7 +134,7 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 .gal-txt p, .widgets-copy p { color: var(--muted); max-width: 34rem; margin: 0 0 14px; }
 .gal-media { grid-column: 2; grid-row: 1 / span 2; margin: 0; max-width: 480px; width: 100%; justify-self: end; }
 .ov-stage { display: flex; justify-content: center; }
-.phone.ov-phone { --pw: 230px; --pink: #f5f5f2; --pmuted: #c4c4c4; width: 230px; max-width: 100%; flex: none; }
+.phone.ov-phone { --pw: 230px; width: 230px; max-width: 100%; flex: none; }
 .screen.static { cursor: default; touch-action: auto; user-select: auto; -webkit-user-select: auto; }
 .screen.static .slide { transition: none; }
 .mock-art { position: absolute; inset: 0; background: var(--track); }
