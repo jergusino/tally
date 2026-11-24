@@ -56,6 +56,7 @@ function render() {
   overlay.classList.toggle("hidden", !shown);
   overlay.dataset.mode = state.mode;
   overlay.style.setProperty("--c", color);
+  overlay.dataset.tone = n >= 30 ? "hot" : "white"; // light-screen styling reads this
   overlay.style.setProperty("--glow", glow);
   overlay.style.setProperty("--nz", (31 + 14 * Math.min(n / 150, 1)).toFixed(2));
   numEl.textContent = n;

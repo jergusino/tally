@@ -97,7 +97,7 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 .status.error { color: #d92d20; }
 
 /* stage: one big rounded card, demo phone left, controls right */
-.stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); background: var(--surface); border-radius: 28px; overflow: hidden; }
+.stage { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 .demo { position: sticky; top: calc(var(--bar-h) + 8px); align-self: start; display: grid; justify-items: center; align-content: start; gap: 16px; padding: clamp(28px, 5vw, 64px) clamp(20px, 4vw, 48px); }
 .features { padding: clamp(16px, 3vw, 40px) clamp(24px, 5vw, 72px) clamp(16px, 3vw, 40px) 0; align-self: center; }
 .feat { padding: 28px 0; border-top: 1px solid var(--line); }
@@ -137,7 +137,7 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 .widgets-copy { grid-column: 1; grid-row: 2; }
 .widgets h2 { grid-column: 1; grid-row: 1; }
 .widgets-copy .small { font-size: .875rem; }
-.homescreen { grid-column: 2; grid-row: 1 / span 2; max-width: 480px; justify-self: end; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 2vw, 24px); padding: clamp(16px, 2.5vw, 32px); background: var(--surface); border-radius: 24px; width: 100%; }
+.homescreen { grid-column: 2; grid-row: 1 / span 2; max-width: 480px; justify-self: end; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 2vw, 24px); padding: 0; width: 100%; }
 
 /* what Tally leaves alone: four plain columns */
 .never { padding-top: clamp(72px, 12vh, 136px); }
@@ -247,7 +247,7 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 
 .wcol { display: grid; gap: clamp(12px, 2.4vw, 20px); align-content: start; }
 .wname { text-align: center; font-size: .9rem; color: var(--muted); }
-.widget { position: relative; container-type: inline-size; background: var(--bg); border: 1px solid var(--line); width: 100%; color: var(--ink); }
+.widget { position: relative; container-type: inline-size; background: var(--surface); border: 1px solid var(--line); width: 100%; color: var(--ink); }
 .w-square { aspect-ratio: 1; border-radius: 17cqw; border-radius: 28px; }
 .w-small { height: 72px; border-radius: 24px; display: flex; align-items: center; justify-content: space-between; padding: 0 14px; }
 .w-square .small-eye { position: absolute; top: 12px; right: 12px; }
@@ -309,4 +309,19 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
   .never ul { grid-template-columns: minmax(0, 1fr); }
   .nav-links { justify-content: space-between; margin: 0 -8px; }
   .nav-links a { padding: 8px 9px; font-size: .875rem; }
+}
+
+/* the demo phone follows the same rule as the screenshots: dark screen on a light page, light screen on a dark page */
+@media (prefers-color-scheme: dark) {
+  .phone { background: #e9e9ed; box-shadow: 0 0 0 1.5px #c3c3cb; }
+  .screen { background: #fff; box-shadow: 0 0 0 3px #0b0b0d; }
+  .slide { background: hsl(var(--h) 34% 91%); color: #1a1a1a; }
+  .slide .cap { color: #1a1a1a; }
+  .rail svg { stroke: #1a1a1a; }
+  .statusbar { color: #1a1a1a; }
+  .gesture { background: rgba(0, 0, 0, .5); }
+  .hint { color: #1a1a1a; text-shadow: none; }
+  .screen:focus-visible { outline-color: var(--red); }
+  .overlay[data-tone="white"] .num, .overlay[data-tone="white"][data-mode="time"] .mins { color: #1a1a1a; }
+  .overlay[data-tone="white"] .mins { color: rgba(26, 26, 26, .7); }
 }
