@@ -133,6 +133,7 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 .gal-head h2, .widgets h2, .never h2, .cta h2 { font-size: clamp(1.9rem, 3.8vw, 3rem); font-weight: 400; letter-spacing: -.04em; line-height: 1.08; }
 .gal-txt p, .widgets-copy p { color: var(--muted); max-width: 34rem; margin: 0 0 14px; }
 .gal-media { grid-column: 2; grid-row: 1 / span 2; margin: 0; max-width: 480px; width: 100%; justify-self: end; }
+#settings .gal-txt { grid-column: 2; grid-row: 1 / span 2; padding-top: 8px; }
 .ov-stage { display: flex; justify-content: center; }
 .phone.ov-phone { --pw: 230px; width: 230px; max-width: 100%; flex: none; }
 .screen.static { cursor: default; touch-action: auto; user-select: auto; -webkit-user-select: auto; }
@@ -374,7 +375,7 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
   .phone { --pw: min(280px, 74vw); }
   .res-head, .res-grid { grid-template-columns: minmax(0, 1fr); }
   .gal, .widgets-grid, .privacy { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
-  .gal-head, .gal-txt, .gal-media, .widgets-copy, .widgets h2, .homescreen, .privacy p, .privacy h2 { grid-column: 1; grid-row: auto; }
+  .gal-head, .gal-txt, #settings .gal-txt, .gal-media, .widgets-copy, .widgets h2, .homescreen, .privacy p, .privacy h2 { grid-column: 1; grid-row: auto; }
   .gal-media { margin-top: 16px; max-width: 420px; justify-self: start; }
   .never ul { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
   .foot-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
