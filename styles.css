@@ -142,7 +142,7 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 .widgets-copy { grid-column: 1; grid-row: 2; }
 .widgets h2 { grid-column: 1; grid-row: 1; }
 .widgets-copy .small { font-size: .875rem; }
-.homescreen { grid-column: 2; grid-row: 1 / span 2; max-width: 480px; justify-self: end; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 2vw, 24px); padding: 0; width: 100%; }
+.homescreen { grid-column: 2; grid-row: 1 / span 2; max-width: 640px; justify-self: end; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.6vw, 18px); padding: 0; width: 100%; }
 
 /* what Tally leaves alone: four plain columns */
 .never { padding-top: clamp(72px, 12vh, 136px); }
@@ -273,6 +273,10 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 .t-small .w-num { font-size: 1.7rem; }
 .w-cap2 { font-size: .74rem; color: var(--muted); line-height: 1.2; }
 .w-square .w-num.t { bottom: 58px; }
+.w-square .w-money { font-size: clamp(1.5rem, 14cqw, 2.2rem); letter-spacing: -.04em; white-space: nowrap; }
+.w-small .w-money { font-size: 1.3rem; letter-spacing: -.03em; white-space: nowrap; }
+.w-small .w-left { justify-items: start; gap: 4px; }
+.w-small .w-left .w-label { font-size: .7rem; }
 .widget.off .w-num:not(.t) { color: var(--ctl); }
 
 

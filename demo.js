@@ -68,6 +68,9 @@ function render() {
   document.querySelectorAll(".widget").forEach((el) => el.classList.toggle("off", !state.on));
   const tmins = Math.round(state.today * MIN_PER_SWIPE);
   document.querySelectorAll("[data-mins]").forEach((el) => { el.textContent = tmins; });
+  // Same maths as the app's PayMath: ms * rate / 36,000,000 cents, rate 5.259 EUR/h (Slovak minimum wage 2026, gross).
+  const cents = Math.floor((tmins * 60000 * 5259 + 18000000) / 36000000);
+  document.querySelectorAll("[data-money]").forEach((el) => { el.textContent = `EUR ${Math.floor(cents / 100)}.${String(cents % 100).padStart(2, "0")}`; });
   document.querySelectorAll("[data-line]").forEach((el) => { el.textContent = suggest(tmins); });
   document.querySelectorAll(".eye").forEach((el) => {
     el.setAttribute("aria-checked", String(state.on));

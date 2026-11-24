@@ -15,7 +15,7 @@ Live at https://jergusino.github.io/tally/ (GitHub Pages, branch `main`, folder 
 
 - The demo phone: drag the screen up or down (or use Swipe, or Space on the focused screen). Each swipe counts, the number goes white, amber, red, and the veil closes in. A ring pulse fires every 50th swipe.
 - Settings you can change on the page: overlay style (Both, Swipes, Time), veil speed (1 to 5), grace swipes (0 to 20), and the eye switch for Tally on or off.
-- Live widgets (2x2 and 2x1) share the same on/off switch. Today's total keeps counting when you reset the session count. The starting total of 128 is demo data.
+- Live widgets (2x2 and 2x1: eye, time, money) share the same on/off switch. Today's total keeps counting when you reset the session count. The money widget mirrors `TallyMoneyWidget` in the tally-app repo: today's time at EUR 5.259/h (Slovak minimum wage 2026), gross. The starting total of 128 is demo data.
 - Two waitlist forms (top and bottom) use the same handler in `script.js`.
 - The phone is a floating panel drawn in CSS, with no hardware parts. The feed is a neutral grey screen with filler captions, no colour, not a real app.
 - Contrast: body and muted text are at least 4.5:1 in both themes; white text on red uses `--red-btn` (5:1).
