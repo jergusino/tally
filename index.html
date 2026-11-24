@@ -14,18 +14,18 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="images/favicon.png" type="image/png">
   <link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
   <header class="top">
     <div class="wrap bar">
       <a class="logo" href="#top" aria-label="Tally, back to top"><picture><source media="(prefers-color-scheme: dark)" srcset="images/logo-mono-light.svg"><img src="images/logo-mono-dark.svg" alt="Tally" width="140" height="39"></picture></a>
-      <nav class="nav-links" aria-label="Sections"><a href="#number">The number</a><a href="#veil">The veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
+      <nav class="nav-links" aria-label="Sections"><a href="#results">Results</a><a href="#demo">Demo</a><a href="#number">The number</a><a href="#veil">The veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
       <a class="pill-link" href="#join">Join the waitlist</a>
       <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span></span><span></span></button>
     </div>
     <nav class="menu" id="menu" aria-label="Menu" hidden>
-      <a href="#number">The number</a><a href="#veil">The veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a>
+      <a href="#results">Results</a><a href="#demo">Demo</a><a href="#number">The number</a><a href="#veil">The veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a>
       <a class="pill-link menu-cta" href="#join">Join the waitlist</a>
     </nav>
   </header>
@@ -52,7 +52,31 @@
         <noscript><p class="small">The waitlist form needs JavaScript. Or email <a href="mailto:mail@jergusino.com">mail@jergusino.com</a>.</p></noscript>
     </section>
 
-    <div class="wrap">
+    <section class="wrap results" id="results" aria-labelledby="results-h">
+      <div class="res-head">
+        <h2 id="results-h">Less scrolling, week after week.</h2>
+        <p>Average screen time for testers over their first eight weeks with Tally.</p>
+      </div>
+      <div class="res-tiles">
+        <div class="tile"><span class="tile-num">-45%</span><span class="tile-cap">swipes per day by week 8</span></div>
+        <div class="tile"><span class="tile-num">38 min</span><span class="tile-cap">less in your apps every day</span></div>
+        <div class="tile"><span class="tile-num">7 in a row</span><span class="tile-cap">weeks lower than the week before</span></div>
+      </div>
+      <div class="res-grid">
+        <figure class="card chart" id="line-card">
+          <figcaption class="card-h">Swipes per day, weeks 1 to 8</figcaption>
+          <div class="legend" aria-hidden="true"><span><i class="sw sw-base"></i>Before Tally</span><span><i class="sw sw-with"></i>With Tally</span></div>
+          <div class="plot" id="line-plot"></div>
+        </figure>
+        <figure class="card bars">
+          <figcaption class="card-h">Change in swipes by app type, week 8</figcaption>
+          <ul class="bar-list" id="bar-list"></ul>
+          <p class="small">Average for testers. Lower is better.</p>
+        </figure>
+      </div>
+    </section>
+
+    <div class="wrap" id="demo">
       <div class="stage">
       <aside class="demo" aria-label="Tally demo">
         <div class="phone">
@@ -99,30 +123,6 @@
       </div>
       </div>
     </div>
-
-    <section class="wrap results" id="results" aria-labelledby="results-h">
-      <div class="res-head">
-        <h2 id="results-h">Less scrolling, week after week.</h2>
-        <p>Average screen time for testers over their first eight weeks with Tally.</p>
-      </div>
-      <div class="res-tiles">
-        <div class="tile"><span class="tile-num">-45%</span><span class="tile-cap">swipes per day by week 8</span></div>
-        <div class="tile"><span class="tile-num">38 min</span><span class="tile-cap">less in your apps every day</span></div>
-        <div class="tile"><span class="tile-num">7 in a row</span><span class="tile-cap">weeks lower than the week before</span></div>
-      </div>
-      <div class="res-grid">
-        <figure class="card chart" id="line-card">
-          <figcaption class="card-h">Swipes per day, weeks 1 to 8</figcaption>
-          <div class="legend" aria-hidden="true"><span><i class="sw sw-base"></i>Before Tally</span><span><i class="sw sw-with"></i>With Tally</span></div>
-          <div class="plot" id="line-plot"></div>
-        </figure>
-        <figure class="card bars">
-          <figcaption class="card-h">Change in swipes by app type, week 8</figcaption>
-          <ul class="bar-list" id="bar-list"></ul>
-          <p class="small">Average for testers. Lower is better.</p>
-        </figure>
-      </div>
-    </section>
 
     <section class="wrap gal" id="number" aria-labelledby="number-h">
       <div class="gal-head"><h2 id="number-h">One number, louder with every swipe.</h2></div>
@@ -240,14 +240,14 @@
     <footer class="wrap foot">
       <div class="foot-cols">
         <div class="foot-brand"><picture><source media="(prefers-color-scheme: dark)" srcset="images/logo-mono-light.svg"><img src="images/logo-mono-dark.svg" alt="Tally" width="140" height="39"></picture></div>
-        <nav aria-label="Product"><h3>Product</h3><a href="#number">The number</a><a href="#veil">The veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
+        <nav aria-label="Product"><h3>Product</h3><a href="#results">Results</a><a href="#demo">Demo</a><a href="#number">The number</a><a href="#veil">The veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
         <nav aria-label="Legal"><h3>Info</h3><a href="#privacy">Your email</a><a href="mailto:mail@jergusino.com">Contact</a></nav>
       </div>
       <p class="foot-line">Made by Jergusino. Tally for Android is not released yet.</p>
     </footer>
   </main>
 
-  <script src="script.js?v=3"></script>
+  <script src="script.js?v=4"></script>
   <script src="demo.js?v=3"></script>
 </body>
 </html>
