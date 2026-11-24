@@ -343,6 +343,20 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 .widget.off .w-num:not(.t) { color: var(--ctl); }
 
 
+/* money widget: no words; hourglass, arrow, coin, then the amount with a red euro sign */
+.m-decor { position: absolute; top: -6px; right: -6px; width: 46%; height: auto; pointer-events: none; }
+.m-top { position: relative; display: flex; align-items: center; gap: 6px; }
+.m-ic { width: 20px; height: 20px; fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.m-hg { fill: var(--muted); stroke: none; width: 18px; height: 18px; }
+.m-coin { width: 26px; height: 26px; }
+.widget.money-sq .m-top { position: absolute; top: 16px; left: 16px; }
+.widget.money-sq .m-amt { left: 16px; right: 12px; bottom: 16px; font-size: 25cqw; font-weight: 300; letter-spacing: -.05em; white-space: nowrap; }
+.m-amt .eur { color: var(--red); font-size: .42em; vertical-align: top; margin-right: .06em; }
+.m-amt small { font-size: .42em; font-weight: 300; letter-spacing: 0; color: var(--muted); }
+.widget.money-sm { display: flex; align-items: center; gap: 14px; padding: 0 16px; justify-content: flex-start; }
+.widget.money-sm .m-coin-s { width: 36px; height: 36px; flex: none; }
+.widget.money-sm .m-amt { position: static; font-size: 2.3rem; font-weight: 300; letter-spacing: -.04em; white-space: nowrap; }
+
 /* motion */
 .pill-link:active, .pill-field button:active, .seg button:active { transform: scale(.97); }
 @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
