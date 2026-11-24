@@ -48,7 +48,12 @@
   }
 }
 
-* { box-sizing: border-box; }
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+/* no text or graphics selection, no image dragging; form fields and the email box stay usable */
+body, img, svg, picture, figure, .phone, .screen, .feed, .slide, .card, .tile, .widget, .homescreen { -webkit-user-select: none; user-select: none; }
+body { -webkit-touch-callout: none; }
+img { -webkit-user-drag: none; pointer-events: none; }
+input, textarea { -webkit-user-select: text; user-select: text; }
 html { color-scheme: light dark; scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1rem/1.5 var(--font); letter-spacing: -.011em; -webkit-font-smoothing: antialiased; }
 h1, h2, h3, p, ul, figure { margin: 0; }
