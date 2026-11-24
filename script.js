@@ -124,12 +124,78 @@ if ("IntersectionObserver" in window) {
   links.forEach((l) => { const t = document.getElementById(l.getAttribute("href").slice(1)); if (t) io.observe(t); });
 }
 
+/* ---------- results charts: MADE-UP illustration data, labelled as such on the page ---------- */
+(function initResults() {
+  const plot = $("line-plot");
+  if (!plot) return;
+  const base = [408, 415, 411, 419, 412, 416, 409, 413];
+  const withT = [410, 372, 331, 298, 271, 252, 238, 229];
+  const H = 300, L = 40, R = 16, T = 16, B = 32, MAX = 450;
+  let W = 640;
+  const x = (i) => L + (i * (W - L - R)) / 7;
+  const y = (v) => T + (1 - v / MAX) * (H - T - B);
+  const path = (a) => a.map((v, i) => (i ? "L" : "M") + x(i).toFixed(1) + " " + y(v).toFixed(1)).join(" ");
+
+  const tb = $("line-table").tBodies[0];
+  base.forEach((b, i) => { const tr = tb.insertRow(); [i + 1, b, withT[i]].forEach((v) => (tr.insertCell().textContent = v)); });
+
+  let hov, tip, el;
+  const draw = () => {
+    W = Math.max(280, Math.round(plot.clientWidth || 640)); // 1 svg unit = 1 css px, so text stays 12px
+    let svg = "";
+    for (const g of [0, 150, 300, 450]) svg += `<line class="gl" x1="${L}" x2="${W - R}" y1="${y(g)}" y2="${y(g)}"/><text x="${L - 8}" y="${y(g) + 4}" text-anchor="end">${g}</text>`;
+    for (let i = 0; i < 8; i++) svg += `<text x="${x(i)}" y="${H - 8}" text-anchor="middle">${i + 1}</text>`;
+    svg += `<path class="ln-base" d="${path(base)}"/><path class="ln-with" d="${path(withT)}"/>`;
+    svg += `<text class="lab" x="${x(7)}" y="${y(base[7]) - 10}" text-anchor="end">Before Tally</text><text class="lab" x="${x(7)}" y="${y(withT[7]) + 22}" text-anchor="end" style="fill:var(--c-with)">With Tally</text>`;
+    svg += `<g id="hov" style="display:none"><line class="cross" y1="${T}" y2="${H - B}"/><circle class="dot-b" r="5"/><circle class="dot" r="5"/></g>`;
+    plot.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Line chart. Swipes per day stay near 410 before Tally and fall from 410 in week 1 to 229 in week 8 with Tally. Made-up data.">${svg}</svg><div class="tip" hidden></div>`;
+    el = plot.querySelector("svg"); hov = plot.querySelector("#hov"); tip = plot.querySelector(".tip");
+  };
+  const show = (i) => {
+    hov.style.display = "";
+    const cross = hov.querySelector(".cross");
+    cross.setAttribute("x1", x(i)); cross.setAttribute("x2", x(i));
+    const [db, dw] = hov.querySelectorAll("circle");
+    db.setAttribute("cx", x(i)); db.setAttribute("cy", y(base[i]));
+    dw.setAttribute("cx", x(i)); dw.setAttribute("cy", y(withT[i]));
+    tip.innerHTML = `<b>Week ${i + 1}</b><br>Before Tally: ${base[i]}<br>With Tally: ${withT[i]}`;
+    tip.hidden = false;
+    tip.style.left = Math.min(Math.max(x(i), 70), W - 70) + "px";
+    tip.style.top = y(withT[i]) - 12 + "px";
+  };
+  const hide = () => { hov.style.display = "none"; tip.hidden = true; };
+  const move = (ev) => {
+    const r = el.getBoundingClientRect();
+    show(Math.min(7, Math.max(0, Math.round((((ev.clientX - r.left) - L) / (W - L - R)) * 7))));
+  };
+  draw();
+  plot.addEventListener("pointermove", move);
+  plot.addEventListener("pointerdown", move);
+  plot.addEventListener("pointerleave", hide);
+  let lastW = W;
+  window.addEventListener("resize", () => { if (Math.abs(plot.clientWidth - lastW) > 4) { draw(); lastW = W; } });
+
+  const bars = [["Short video", 52], ["Photo feed", 46], ["Social feed", 41], ["News", 33], ["Browser", 24]];
+  const list = $("bar-list");
+  bars.forEach(([n, v]) => {
+    const li = document.createElement("li");
+    li.className = "bar-row";
+    li.title = `${n}: -${v}% swipes`;
+    li.innerHTML = `<div class="bar-top"><span>${n}</span><span>-${v}%</span></div><div class="bar-track"><div class="bar-fill" data-w="${v}"></div></div>`;
+    list.append(li);
+  });
+  const fills = [...list.querySelectorAll(".bar-fill")];
+  const grow = () => fills.forEach((f) => (f.style.width = f.dataset.w * (100 / 60) + "%"));
+  if (reduceMotion || !("IntersectionObserver" in window)) grow();
+  else new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { grow(); o.disconnect(); } }, { threshold: 0.3 }).observe(list);
+})();
+
 // Scroll reveal: sections fade up once, the first time they come into view. Off for reduced motion.
 if (!reduceMotion) {
   document.documentElement.classList.add("js");
   // A section counts as seen once its top is within the top 92% of the window. This also
   // catches sections a long jump (nav link, end key) skipped past, which an observer would miss.
-  let pending = [...document.querySelectorAll(".feat, .gal, .widgets, .never, .cta, .privacy")];
+  let pending = [...document.querySelectorAll(".feat, .results, .gal, .widgets, .never, .cta, .privacy")];
   pending.forEach((el) => el.classList.add("reveal"));
   let queued = false;
   const checkReveal = () => {
