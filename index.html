@@ -14,18 +14,18 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="images/favicon.png" type="image/png">
   <link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=4">
+  <link rel="stylesheet" href="styles.css?v=5">
 </head>
 <body>
   <header class="top">
     <div class="wrap bar">
       <a class="logo" href="#top" aria-label="Tally, back to top"><picture><source media="(prefers-color-scheme: dark)" srcset="images/logo-mono-light.svg"><img src="images/logo-mono-dark.svg" alt="Tally" width="140" height="39"></picture></a>
-      <nav class="nav-links" aria-label="Sections"><a href="#results">Results</a><a href="#demo">Demo</a><a href="#number">The number</a><a href="#veil">The veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
+      <nav class="nav-links" aria-label="Sections"><a href="#results">Results</a><a href="#demo">Demo</a><a href="#number">Number &amp; veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
       <a class="pill-link" href="#join">Join the waitlist</a>
       <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open menu"><span></span><span></span></button>
     </div>
     <nav class="menu" id="menu" aria-label="Menu" hidden>
-      <a href="#results">Results</a><a href="#demo">Demo</a><a href="#number">The number</a><a href="#veil">The veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a>
+      <a href="#results">Results</a><a href="#demo">Demo</a><a href="#number">Number &amp; veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a>
       <a class="pill-link menu-cta" href="#join">Join the waitlist</a>
     </nav>
   </header>
@@ -125,27 +125,22 @@
     </div>
 
     <section class="wrap gal" id="number" aria-labelledby="number-h">
-      <div class="gal-head"><h2 id="number-h">One number, louder with every swipe.</h2></div>
+      <div class="gal-head"><h2 id="number-h">One number, and a veil that closes in.</h2></div>
       <div class="gal-txt">
-        <p>Tally shows the total over the apps you pick. It starts small and white, grows, turns amber, then red, and sends out a ring every 50th swipe. It is semi-transparent, and touches go through to the app underneath.</p>
-        <p>The default shows swipes with the minutes small under them. You can switch to swipes only, or to time only. Time counts only while one of your apps is in front, and after a short break the count starts again. The exact steps and timing may change before release.</p>
+        <p>Tally shows the total over the apps you pick. It starts small and white, grows, turns amber, then red, and sends out a ring every 50th swipe. It is semi-transparent, and touches go through to the app underneath. The default shows swipes with the minutes small under them. You can switch to swipes only, or to time only.</p>
+        <p>With every swipe the edges go dark, until only a small clear patch is left, about a quarter of the screen across. The veil is black, and the number is drawn above it, so the count stays easy to read. Nothing is blocked: there is no trap and no button to find. It draws only over the apps you picked, and it never touches system screens or calls.</p>
+        <p>Time counts only while one of your apps is in front, and after a short break the count starts again. The exact steps and timing may change before release.</p>
       </div>
-      <figure class="gal-media">
-        <picture><source media="(prefers-color-scheme: dark)" srcset="images/number-for-dark.webp" type="image/webp"><img src="images/number.webp" alt="Three phones showing the Tally number at 12, 48 and 120 swipes, growing and changing from white to amber to red" width="2276" height="1558" loading="lazy"></picture>
-        <figcaption class="cap">12, 48 and 120 swipes.</figcaption>
-      </figure>
-    </section>
-
-    <section class="wrap gal" id="veil" aria-labelledby="veil-h">
-      <div class="gal-head"><h2 id="veil-h">The veil closes in. Nothing is blocked.</h2></div>
-      <div class="gal-txt">
-        <p>Edges go dark first. At the end only a small clear patch is left, about a quarter of the screen across. The veil is black, and the number is drawn above it, so the count stays easy to read.</p>
-        <p>It does not block touches. They pass through to the app underneath, so there is no trap and no button to find. It draws only over the apps you picked, and it never touches system screens or calls.</p>
+      <div class="gal-media gal-pair">
+        <figure>
+          <picture><source media="(prefers-color-scheme: dark)" srcset="images/number-for-dark.webp" type="image/webp"><img src="images/number.webp" alt="Three phones showing the Tally number at 12, 48 and 120 swipes, growing and changing from white to amber to red" width="2276" height="1558" loading="lazy"></picture>
+          <figcaption class="cap">The number at 12, 48 and 120 swipes.</figcaption>
+        </figure>
+        <figure>
+          <picture><source media="(prefers-color-scheme: dark)" srcset="images/veil-for-dark.webp" type="image/webp"><img src="images/veil.webp" alt="Three phones showing the veil at 20, 60 and 150 swipes, closing in from the edges" width="2276" height="1558" loading="lazy"></picture>
+          <figcaption class="cap">The veil at 20, 60 and 150 swipes.</figcaption>
+        </figure>
       </div>
-      <figure class="gal-media">
-        <picture><source media="(prefers-color-scheme: dark)" srcset="images/veil-for-dark.webp" type="image/webp"><img src="images/veil.webp" alt="Three phones showing the veil at 20, 60 and 150 swipes, closing in from the edges" width="2276" height="1558" loading="lazy"></picture>
-        <figcaption class="cap">20, 60 and 150 swipes.</figcaption>
-      </figure>
     </section>
 
     <section class="wrap widgets" id="widgets" aria-labelledby="widgets-h">
@@ -240,14 +235,14 @@
     <footer class="wrap foot">
       <div class="foot-cols">
         <div class="foot-brand"><picture><source media="(prefers-color-scheme: dark)" srcset="images/logo-mono-light.svg"><img src="images/logo-mono-dark.svg" alt="Tally" width="140" height="39"></picture></div>
-        <nav aria-label="Product"><h3>Product</h3><a href="#results">Results</a><a href="#demo">Demo</a><a href="#number">The number</a><a href="#veil">The veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
+        <nav aria-label="Product"><h3>Product</h3><a href="#results">Results</a><a href="#demo">Demo</a><a href="#number">Number &amp; veil</a><a href="#widgets">Widgets</a><a href="#settings">Settings</a></nav>
         <nav aria-label="Legal"><h3>Info</h3><a href="#privacy">Your email</a><a href="mailto:mail@jergusino.com">Contact</a></nav>
       </div>
       <p class="foot-line">Made by Jergusino. Tally for Android is not released yet.</p>
     </footer>
   </main>
 
-  <script src="script.js?v=4"></script>
+  <script src="script.js?v=5"></script>
   <script src="demo.js?v=3"></script>
 </body>
 </html>
