@@ -14,7 +14,7 @@
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="images/favicon.png" type="image/png">
   <link rel="preload" href="fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20">
+  <link rel="stylesheet" href="styles.css?v=22">
 </head>
 <body>
   <header class="top">
@@ -195,18 +195,18 @@
             <p class="wname">Time widget</p>
           </div>
           <div class="wcol">
-            <div class="widget w-square money-sq">
-              <svg class="m-decor" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="54" fill="none" stroke="#ff312e" stroke-opacity=".28" stroke-width="2.5"/><circle cx="60" cy="60" r="38" fill="none" stroke="#ff312e" stroke-opacity=".28" stroke-width="2.5"/><ellipse cx="60" cy="60" rx="15.5" ry="24" fill="#ff312e" fill-opacity=".16"/></svg>
-              <div class="m-top" aria-hidden="true">
-                <svg viewBox="0 0 24 24" class="m-ic m-hg"><path d="M6,2h12v6l-4,4l4,4v6H6v-6l4,-4l-4,-4z"/></svg>
-                <svg viewBox="0 0 24 24" class="m-ic m-ar"><path d="M4,12h15M13,6l6,6l-6,6"/></svg>
-                <svg viewBox="0 0 24 24" class="m-coin"><circle cx="12" cy="12" r="11" fill="#ff312e"/><circle cx="12" cy="12" r="7.8" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1.1"/><path fill="#fff" d="M12,6.6c1.9,0 3,2.3 3,5.4s-1.1,5.4 -3,5.4s-3,-2.3 -3,-5.4s1.1,-5.4 3,-5.4z"/></svg>
-              </div>
-              <span class="w-num t w-money m-amt" data-money role="img" aria-label="EUR 1.84">EUR 1.84</span>
+            <div class="widget w-square money-sq" role="img" aria-label="EUR 1.84 at minimum wage today, gross">
+              <span class="m-cap" aria-hidden="true">You could make this while scrolling.</span>
+              <span class="m-row" aria-hidden="true">
+                <span class="m-amt" data-money>1<small>.84</small></span>
+                <span class="m-eur">€</span>
+              </span>
             </div>
-            <div class="widget w-small money-sm">
-              <svg viewBox="0 0 24 24" class="m-coin m-coin-s" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#ff312e"/><circle cx="12" cy="12" r="7.8" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="1.1"/><path fill="#fff" d="M12,6.6c1.9,0 3,2.3 3,5.4s-1.1,5.4 -3,5.4s-3,-2.3 -3,-5.4s1.1,-5.4 3,-5.4z"/></svg>
-              <span class="w-num t w-money m-amt" data-money role="img" aria-label="EUR 1.84">EUR 1.84</span>
+            <div class="widget w-small money-sm" role="img" aria-label="EUR 1.84 at minimum wage today, gross">
+              <span class="m-row" aria-hidden="true">
+                <span class="m-amt" data-money>1<small>.84</small></span>
+                <span class="m-eur">€</span>
+              </span>
             </div>
             <p class="wname">Money widget</p>
           </div>
@@ -250,7 +250,7 @@
     </footer>
   </main>
 
-  <script src="script.js?v=20"></script>
-  <script src="demo.js?v=20"></script>
+  <script src="script.js?v=22"></script>
+  <script src="demo.js?v=22"></script>
 </body>
 </html>

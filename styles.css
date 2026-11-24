@@ -119,6 +119,19 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 #join .pill-field button:hover { background: var(--red); }
 #demo { padding-top: clamp(72px, 12vh, 136px); padding-bottom: clamp(24px, 4vw, 48px); }
 
+/* money widget: caption, amount bottom-left, red euro on the same baseline bottom-right */
+.money-sq .m-cap { position: absolute; top: 16px; left: 16px; right: 16px; font-size: .8rem; font-weight: 500; line-height: 1.25; color: var(--muted); }
+.money-sq .m-row { position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: space-between; align-items: baseline; }
+.money-sq .m-amt { font-size: 25cqw; font-weight: 300; letter-spacing: -.05em; line-height: .9; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.money-sq .m-eur { color: var(--red); font-size: 11cqw; font-weight: 300; line-height: .9; }
+.money-sm { display: flex; align-items: center; padding: 0 16px; }
+.money-sm .m-amt { font-size: 2.3rem; font-weight: 300; letter-spacing: -.04em; line-height: .9; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.money-sm .m-row { position: static; display: flex; align-items: baseline; gap: .1em; }
+.money-sm .m-eur { color: var(--red); font-size: .6em; }
+.m-amt small, .money-sq .m-cap + .m-row .m-amt small { font-size: .42em; font-weight: 300; letter-spacing: 0; color: var(--muted); }
+/* the red chips in the time sentence, like the app */
+mark.hl { background: var(--red-btn); color: #fff; border-radius: 4px; padding: 0 .3em; }
+
 /* controls */
 .seg { display: inline-flex; margin-top: 18px; padding: 3px; gap: 2px; background: var(--bg); border: 1px solid var(--line); border-radius: 999px; }
 .seg button { padding: 8px 18px; border: 0; border-radius: 999px; background: transparent; font-weight: 500; color: var(--muted); transition: background-color .25s ease, color .25s ease; }
@@ -336,26 +349,12 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 .t-small .w-num { font-size: 1.7rem; }
 .w-cap2 { font-size: .74rem; color: var(--muted); line-height: 1.2; }
 .w-square .w-num.t { bottom: 58px; }
-.w-square .w-money { font-size: clamp(1.5rem, 14cqw, 2.2rem); letter-spacing: -.04em; white-space: nowrap; }
-.w-small .w-money { font-size: 1.3rem; letter-spacing: -.03em; white-space: nowrap; }
 .w-small .w-left { justify-items: start; gap: 4px; }
 .w-small .w-left .w-label { font-size: .7rem; }
 .widget.off .w-num:not(.t) { color: var(--ctl); }
 
 
 /* money widget: no words; hourglass, arrow, coin, then the amount with a red euro sign */
-.m-decor { position: absolute; top: -6px; right: -6px; width: 46%; height: auto; pointer-events: none; }
-.m-top { position: relative; display: flex; align-items: center; gap: 6px; }
-.m-ic { width: 20px; height: 20px; fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.m-hg { fill: var(--muted); stroke: none; width: 18px; height: 18px; }
-.m-coin { width: 26px; height: 26px; }
-.widget.money-sq .m-top { position: absolute; top: 16px; left: 16px; }
-.widget.money-sq .m-amt { left: 16px; right: 12px; bottom: 16px; font-size: 25cqw; font-weight: 300; letter-spacing: -.05em; white-space: nowrap; }
-.m-amt .eur { color: var(--red); font-size: .42em; vertical-align: top; margin-right: .06em; }
-.m-amt small { font-size: .42em; font-weight: 300; letter-spacing: 0; color: var(--muted); }
-.widget.money-sm { display: flex; align-items: center; gap: 14px; padding: 0 16px; justify-content: flex-start; }
-.widget.money-sm .m-coin-s { width: 36px; height: 36px; flex: none; }
-.widget.money-sm .m-amt { position: static; font-size: 2.3rem; font-weight: 300; letter-spacing: -.04em; white-space: nowrap; }
 
 /* motion */
 .pill-link:active, .pill-field button:active, .seg button:active { transform: scale(.97); }
