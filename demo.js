@@ -35,16 +35,21 @@ function colorFor(n) {
   return ["var(--n-white)", ""];
 }
 
-// Largest activities that fit today's minutes. Nothing under 10 minutes. Rough round numbers.
-const ACTS = [[30, "30-minute walk", "30-minute walks"], [20, "20-minute book chapter", "20-minute book chapters"], [15, "15-minute language lesson", "15-minute language lessons"], [10, "10-minute stretch", "10-minute stretches"]];
-// Same sentence as the app: the count and the duration are red chips.
+// Activities for today's minutes, largest first. Nothing under 10 minutes. Rough round numbers.
+const ACTS = [[30, "walk", "walks"], [20, "book chapter", "book chapters"], [15, "language lesson", "language lessons"], [10, "stretch", "stretches"]];
+const WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty"];
+// Same sentence as the app: "About three walks." with the count and activity as a red chip.
 function suggestHtml(m) {
   if (m < 10) return "";
   const a = ACTS.find((x) => m >= x[0]);
   const n = Math.floor(m / a[0]);
-  const dur = a[1].split(" ")[0];
-  const tail = (n === 1 ? a[1] : a[2]).slice(dur.length + 1);
-  return `About <mark class="hl">${n}</mark> <mark class="hl">${dur}</mark> ${tail}`;
+  const count = n <= 20 ? WORDS[n] : String(n);
+  return `About <mark class="hl">${count} ${n === 1 ? a[1] : a[2]}</mark>.`;
+}
+// Time label as the app shows it: "1 h 35 min", or "35 min" under an hour.
+function durHtml(m) {
+  const h = Math.floor(m / 60), r = m % 60;
+  return h ? `${h} h ${r} min` : `${r} min`;
 }
 
 function render() {
@@ -71,7 +76,7 @@ function render() {
   document.querySelectorAll("[data-wcap]").forEach((el) => { el.textContent = state.on ? "swipes today" : "paused"; });
   document.querySelectorAll(".widget").forEach((el) => el.classList.toggle("off", !state.on));
   const tmins = Math.round(state.today * MIN_PER_SWIPE);
-  document.querySelectorAll("[data-mins]").forEach((el) => { el.textContent = tmins; });
+  document.querySelectorAll("[data-dur]").forEach((el) => { el.textContent = durHtml(tmins); });
   // Same maths as the app's PayMath: ms * rate / 36,000,000 cents, rate 5.259 EUR/h (Slovak minimum wage 2026, gross).
   const cents = Math.floor((tmins * 60000 * 5259 + 18000000) / 36000000);
   const whole = Math.floor(cents / 100), frac = String(cents % 100).padStart(2, "0");

@@ -343,14 +343,13 @@ mark.hl { background: var(--red-btn); color: #fff; border-radius: 4px; padding: 
 .w-cap { position: absolute; left: 16px; right: 12px; bottom: 14px; font-size: .78rem; line-height: 1.25; color: var(--muted); }
 .w-small .w-right { display: grid; justify-items: end; gap: 3px; }
 .w-small .w-num { font-size: 2rem; }
-.w-num.t { color: var(--ink); }
 .w-num small { font-size: .42em; font-weight: 700; letter-spacing: 0; }
-.t-small { display: grid; align-content: center; gap: 4px; justify-content: start; }
-.t-small .w-num { font-size: 1.7rem; }
-.w-cap2 { font-size: .74rem; color: var(--muted); line-height: 1.2; }
-.w-square .w-num.t { bottom: 58px; }
-.w-small .w-left { justify-items: start; gap: 4px; }
-.w-small .w-left .w-label { font-size: .7rem; }
+.w-dur { font-size: .82rem; color: var(--muted); line-height: 1.2; }
+.w-square .w-dur { position: absolute; top: 16px; left: 16px; }
+.w-line { color: var(--ink); line-height: 1.08; letter-spacing: -.02em; }
+.w-square .w-line { position: absolute; left: 16px; right: 16px; bottom: 16px; font-size: 12.5cqw; }
+.t-small { display: grid; align-content: center; justify-items: start; justify-content: start; gap: 4px; padding: 0 16px; }
+.t-small .w-line { font-size: .95rem; }
 .widget.off .w-num:not(.t) { color: var(--ctl); }
 
 
