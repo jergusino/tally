@@ -117,7 +117,8 @@ h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); font-weight: 400; letter-spacing: -
 
 #join .pill-field button { background: var(--red-btn); color: #fff; }
 #join .pill-field button:hover { background: var(--red); }
-#demo { padding-top: clamp(72px, 12vh, 136px); padding-bottom: clamp(24px, 4vw, 48px); }
+/* margin, not padding: the nav scrolls to the box's top edge, so padding would push the phone off the bottom of the screen */
+#demo { margin-top: clamp(72px, 12vh, 136px); padding-bottom: clamp(24px, 4vw, 48px); }
 
 /* money widget: caption, amount bottom-left, red euro on the same baseline bottom-right */
 .money-sq .m-cap { position: absolute; top: 16px; left: 16px; right: 16px; font-size: .8rem; font-weight: 500; line-height: 1.25; color: var(--muted); }
